@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -13,7 +14,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+<<<<<<< HEAD
 import android.widget.EditText;
+=======
+>>>>>>> 5124e951894bbafcdf2c21701ed997764b908482
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity
@@ -83,6 +87,7 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
+<<<<<<< HEAD
         if (id == R.id.nav_dashboard) {
 
             Intent intent = new Intent(this, courses.class);
@@ -90,12 +95,20 @@ public class MainActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_courses) {
 
+=======
+
+        if (id == R.id.nav_dashboard) {
+            // Handle the camera action
+        } else if (id == R.id.nav_courses) {
+            Intent nextScreen = new Intent(getApplicationContext(), Course.class);
+            startActivity(nextScreen);
+>>>>>>> 5124e951894bbafcdf2c21701ed997764b908482
         } else if (id == R.id.nav_aboutus) {
 
         } else if (id == R.id.nav_share) {
-
+            // do something
         } else if (id == R.id.nav_send) {
-
+            // do something
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
