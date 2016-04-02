@@ -1,5 +1,6 @@
 package com.github.amitkmr.attendencemarker;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -12,6 +13,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -80,11 +83,14 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        if (id == R.id.nav_dashboard) {
 
-        } else if (id == R.id.nav_slideshow) {
+            Intent intent = new Intent(this, courses.class);
+            TextView editText = (TextView) findViewById(R.id.course1);
+
+        } else if (id == R.id.nav_courses) {
+
+        } else if (id == R.id.nav_aboutus) {
 
         } else if (id == R.id.nav_share) {
 
