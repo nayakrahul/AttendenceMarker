@@ -17,5 +17,7 @@
         android:layout_marginTop="71dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:background="#f57e7e" />
+        android:background="#f57e7e"
+        android:nestedScrollingEnabled="false"
+        android:onClick="onClick" />
 </RelativeLayout>
