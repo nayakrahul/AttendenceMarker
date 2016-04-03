@@ -22,7 +22,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     public DBHelper(Context context)
     {
-        super(context, DATABASE_NAME , null, 1);
+        super(context, DATABASE_NAME, null, 1);
     }
 
     @Override
@@ -30,18 +30,18 @@ public class DBHelper extends SQLiteOpenHelper {
         // TODO Auto-generated method stub
         db.execSQL(
                 "create table course_info " +
-                        "(id integer primary key, name text)"
+                        "(id text primary key, name text)"
         );
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // TODO Auto-generated method stub
-        db.execSQL("DROP TABLE IF EXISTS contacts");
+        db.execSQL("DROP TABLE IF EXISTS course_info");
         onCreate(db);
     }
 
-    public boolean insertContact  (String id, String name)
+    public boolean insertCourse  (String id, String name)
     {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -51,17 +51,20 @@ public class DBHelper extends SQLiteOpenHelper {
         return true;
     }
 
-    public Cursor getData(String id){
+    public String getData(String id){
+        String data;
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor res =  db.rawQuery( "select * from course_info where id=" + id + "", null );
-        return res;
+        Cursor res =  db.rawQuery( "select * from course_info where id = ?", new String[]{id});
+        res.moveToFirst();
+        data = res.getString(res.getColumnIndex(COURSES_COLUMN_NAME));
+        return data;
     }
 
-    public int numberOfRows(){
-        SQLiteDatabase db = this.getReadableDatabase();
-        int numRows = (int) DatabaseUtils.queryNumEntries(db, COURSES_TABLE_NAME);
-        return numRows;
-    }
+//    public int numberOfRows(){
+//        SQLiteDatabase db = this.getReadableDatabase();
+//        int numRows = (int) DatabaseUtils.queryNumEntries(db, COURSES_TABLE_NAME);
+//        return numRows;
+//    }
 
 //    public boolean updateContact (String id, String name)
 //    {
@@ -84,7 +87,23 @@ public class DBHelper extends SQLiteOpenHelper {
                 new String[] { id });
     }
 
-    public ArrayList<String> getAllCotacts()
+    public ArrayList<String> getAllCoursesID()
+    {
+        ArrayList<String> array_list = new ArrayList<String>();
+
+        //hp = new HashMap();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor res =  db.rawQuery( "select * from course_info", null );
+        res.moveToFirst();
+
+        while(res.isAfterLast() == false){
+            array_list.add(res.getString(res.getColumnIndex(COURSES_COLUMN_ID)));
+            res.moveToNext();
+        }
+        return array_list;
+    }
+
+    public ArrayList<String> getAllCoursesName()
     {
         ArrayList<String> array_list = new ArrayList<String>();
 
