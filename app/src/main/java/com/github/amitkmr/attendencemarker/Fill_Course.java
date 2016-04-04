@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,6 +31,7 @@ public class Fill_Course extends AppCompatActivity implements TimePickerFragment
         setContentView(R.layout.activity_fill_course);
         id = (TextView) findViewById(R.id.editId);
         name = (TextView) findViewById(R.id.editName);
+
 
         mydb = new DBHelper(this);
 
@@ -52,10 +55,101 @@ public class Fill_Course extends AppCompatActivity implements TimePickerFragment
                 }
     }
 
+    public void itemClicked(View v) {
+        //code to check if this checkbox is checked!
+        CheckBox checkBox = (CheckBox)v;
+        if(checkBox.isChecked()){
+            String checkText = checkBox.getText().toString();
+            Button b1,b2;
+            switch (checkText) {
+                case "Mon":
+                    b1 = (Button) findViewById(R.id.mon_start_button);
+                    b1.setEnabled(true);
+                    b2 = (Button) findViewById(R.id.mon_end_button);
+                    b2.setEnabled(true);
+                case "Tue":
+                    b1 = (Button) findViewById(R.id.tue_start_button);
+                    b1.setEnabled(true);
+                    b2 = (Button) findViewById(R.id.tue_end_button);
+                    b2.setEnabled(true);
+                case "Wed":
+                    b1 = (Button) findViewById(R.id.wed_start_button);
+                    b1.setEnabled(true);
+                    b2 = (Button) findViewById(R.id.wed_end_button);
+                    b2.setEnabled(true);
+                case "Thu":
+                    b1 = (Button) findViewById(R.id.thu_start_button);
+                    b1.setEnabled(true);
+                    b2 = (Button) findViewById(R.id.thu_end_button);
+                    b2.setEnabled(true);
+                case "Fri":
+                    b1 = (Button) findViewById(R.id.fri_start_button);
+                    b1.setEnabled(true);
+                    b2 = (Button) findViewById(R.id.fri_end_button);
+                    b2.setEnabled(true);
+                case "Sat":
+                    b1 = (Button) findViewById(R.id.sat_start_button);
+                    b1.setEnabled(true);
+                    b2 = (Button) findViewById(R.id.sat_end_button);
+                    b2.setEnabled(true);
+                case "Sun":
+                    b1 = (Button) findViewById(R.id.sun_start_button);
+                    b1.setEnabled(true);
+                    b2 = (Button) findViewById(R.id.sun_end_button);
+                    b2.setEnabled(true);
+            }
+        }
+        else{
+                String checkText = checkBox.getText().toString();
+                Button b1,b2;
+                switch (checkText) {
+                    case "Mon":
+                        b1 = (Button) findViewById(R.id.mon_start_button);
+                        b1.setEnabled(false);
+                        b2 = (Button) findViewById(R.id.mon_end_button);
+                        b2.setEnabled(false);
+                    case "Tue":
+                        b1 = (Button) findViewById(R.id.tue_start_button);
+                        b1.setEnabled(false);
+                        b2 = (Button) findViewById(R.id.tue_end_button);
+                        b2.setEnabled(false);
+                    case "Wed":
+                        b1 = (Button) findViewById(R.id.wed_start_button);
+                        b1.setEnabled(false);
+                        b2 = (Button) findViewById(R.id.wed_end_button);
+                        b2.setEnabled(false);
+                    case "Thu":
+                        b1 = (Button) findViewById(R.id.thu_start_button);
+                        b1.setEnabled(false);
+                        b2 = (Button) findViewById(R.id.thu_end_button);
+                        b2.setEnabled(false);
+                    case "Fri":
+                        b1 = (Button) findViewById(R.id.fri_start_button);
+                        b1.setEnabled(false);
+                        b2 = (Button) findViewById(R.id.fri_end_button);
+                        b2.setEnabled(false);
+                    case "Sat":
+                        b1 = (Button) findViewById(R.id.sat_start_button);
+                        b1.setEnabled(false);
+                        b2 = (Button) findViewById(R.id.sat_end_button);
+                        b2.setEnabled(false);
+                    case "Sun":
+                        b1 = (Button) findViewById(R.id.sun_start_button);
+                        b1.setEnabled(false);
+                        b2 = (Button) findViewById(R.id.sun_end_button);
+                        b2.setEnabled(false);
+                }
+            }
+
+    }
+
     int flag;
+    String buttonText;
     public void onClick_start_time(View v)
     {
         flag = 0;
+        Button b = (Button)v;
+        buttonText = b.getText().toString();
         FragmentManager fm = getFragmentManager();
         TimePickerFragment dialogFragment = new TimePickerFragment ();
         dialogFragment.show(fm, "Sample Fragment");
@@ -64,6 +158,8 @@ public class Fill_Course extends AppCompatActivity implements TimePickerFragment
     public void onClick_end_time(View v)
     {
         flag = 1;
+        Button b = (Button)v;
+        buttonText = b.getText().toString();
         FragmentManager fm = getFragmentManager();
         TimePickerFragment dialogFragment = new TimePickerFragment ();
         dialogFragment.show(fm, "Sample Fragment");
@@ -73,15 +169,84 @@ public class Fill_Course extends AppCompatActivity implements TimePickerFragment
     private TextView end_time;
     @Override
     public void someEvent(String s) {
-        if (flag == 0) {
-            start_time = (TextView) findViewById(R.id.time1);
-            start_time.setText(s);
-            time1 = s;
-        }
-        else {
-            end_time = (TextView) findViewById(R.id.time2);
-            end_time.setText(s);
-            time2 = s;
+        switch (buttonText) {
+            case "Monday":
+                if (flag == 0) {
+                    start_time = (TextView) findViewById(R.id.mon_start_text);
+                    start_time.setText(s);
+                    time1 = s;
+                } else {
+                    end_time = (TextView) findViewById(R.id.mon_end_text);
+                    end_time.setText(s);
+                    time2 = s;
+                }
+                break;
+            case "Tuesday":
+                if (flag == 0) {
+                    start_time = (TextView) findViewById(R.id.tue_start_text);
+                    start_time.setText(s);
+                    time1 = s;
+                } else {
+                    end_time = (TextView) findViewById(R.id.tue_end_text);
+                    end_time.setText(s);
+                    time2 = s;
+                }
+                break;
+            case "Wednesday":
+                if (flag == 0) {
+                    start_time = (TextView) findViewById(R.id.wed_start_text);
+                    start_time.setText(s);
+                    time1 = s;
+                } else {
+                    end_time = (TextView) findViewById(R.id.wed_end_text);
+                    end_time.setText(s);
+                    time2 = s;
+                }
+                break;
+            case "Thursday":
+                if (flag == 0) {
+                    start_time = (TextView) findViewById(R.id.thu_start_text);
+                    start_time.setText(s);
+                    time1 = s;
+                } else {
+                    end_time = (TextView) findViewById(R.id.thu_end_text);
+                    end_time.setText(s);
+                    time2 = s;
+                }
+                break;
+            case "Friday":
+                if (flag == 0) {
+                    start_time = (TextView) findViewById(R.id.fri_start_text);
+                    start_time.setText(s);
+                    time1 = s;
+                } else {
+                    end_time = (TextView) findViewById(R.id.fri_end_text);
+                    end_time.setText(s);
+                    time2 = s;
+                }
+                break;
+            case "Saturday":
+                if (flag == 0) {
+                    start_time = (TextView) findViewById(R.id.sat_start_text);
+                    start_time.setText(s);
+                    time1 = s;
+                } else {
+                    end_time = (TextView) findViewById(R.id.sat_end_text);
+                    end_time.setText(s);
+                    time2 = s;
+                }
+                break;
+            case "Sunday":
+                if (flag == 0) {
+                    start_time = (TextView) findViewById(R.id.sun_start_text);
+                    start_time.setText(s);
+                    time1 = s;
+                } else {
+                    end_time = (TextView) findViewById(R.id.sun_end_text);
+                    end_time.setText(s);
+                    time2 = s;
+                }
+                break;
         }
     }
     @Override

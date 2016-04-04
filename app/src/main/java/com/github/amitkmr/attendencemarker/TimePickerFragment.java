@@ -39,7 +39,7 @@ public class TimePickerFragment extends DialogFragment {
                 public void onClick(View v) {
                     final int hour = timePicker.getHour();
                     final int min = timePicker.getMinute();
-                    someEventListener.someEvent(String.valueOf(hour)+":"+String.valueOf(min));
+                    someEventListener.someEvent(String.format("%02d", hour)+":"+String.format("%02d", min));
                     dismiss();
                 }
             });

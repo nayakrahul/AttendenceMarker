@@ -25,7 +25,8 @@
             android:layout_toStartOf="@+id/editId"
             android:layout_alignRight="@+id/textView5"
             android:layout_alignEnd="@+id/textView5"
-            android:fontFamily="Roboto-Thin" />
+            android:fontFamily="Roboto-Thin"
+            android:textColor="#797878" />
 
         <Button
             android:id="@+id/button1"
@@ -47,7 +48,8 @@
             android:layout_alignBottom="@+id/editName"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:fontFamily="Roboto-Thin" />
+            android:fontFamily="Roboto-Thin"
+            android:textColor="#797878" />
 
         <EditText
             android:layout_width="wrap_content"
@@ -79,52 +81,538 @@
             android:fontFamily="Roboto-Thin"
             android:layout_alignWithParentIfMissing="false"
             android:layout_below="@+id/textView5"
-            android:layout_marginTop="200dp"
+            android:layout_marginTop="500dp"
             android:layout_alignRight="@+id/button1"
             android:layout_alignEnd="@+id/button1" />
 
-        <Button
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="165dp"
-            android:layout_height="wrap_content"
-            android:text="Start time"
-            android:id="@+id/start_time"
-            android:layout_marginTop="47dp"
-            android:layout_below="@+id/textView5"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:onClick="onClick_start_time" />
-
-        <Button
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="165dp"
-            android:layout_height="wrap_content"
-            android:text="end time"
-            android:id="@+id/end_time"
-            android:layout_alignTop="@+id/start_time"
-            android:layout_alignRight="@+id/editName"
-            android:layout_alignEnd="@+id/editName"
-            android:onClick="onClick_end_time" />
-
-        <TextView
+        <CheckBox
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="New Text"
-            android:id="@+id/time1"
-            android:layout_below="@+id/start_time"
+            android:layout_height="50dp"
+            android:text="Mon"
+            android:id="@+id/checkBox"
+            android:checked="false"
+            android:textSize="18dp"
+            android:layout_below="@+id/textView2"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_alignRight="@+id/textView5"
-            android:layout_alignEnd="@+id/textView5" />
+            android:layout_alignEnd="@+id/textView5"
+            android:textColor="#474747"
+            android:fontFamily="Roboto-Thin"
+            android:onClick="itemClicked" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="New Text"
-            android:id="@+id/time2"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Schedule"
+            android:id="@+id/textView"
+            android:layout_below="@+id/textView5"
+            android:background="@drawable/edit_text_bottom_border"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="36dp"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
-            android:layout_alignBottom="@+id/time1" />
+            android:textColor="#797878"
+            android:fontFamily="Roboto-Thin" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:text="Tue"
+            android:id="@+id/checkBox2"
+            android:checked="false"
+            android:textSize="18dp"
+            android:layout_below="@+id/checkBox"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignRight="@+id/checkBox"
+            android:layout_alignEnd="@+id/checkBox"
+            android:textColor="#474747"
+            android:fontFamily="Roboto-Thin"
+            android:onClick="itemClicked" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:text="Wed"
+            android:id="@+id/checkBox3"
+            android:checked="false"
+            android:textSize="18dp"
+            android:layout_below="@+id/checkBox2"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_toLeftOf="@+id/mon_start_text"
+            android:layout_toStartOf="@+id/mon_start_text"
+            android:textColor="#474747"
+            android:fontFamily="Roboto-Thin"
+            android:onClick="itemClicked" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:text="Thu"
+            android:id="@+id/checkBox4"
+            android:checked="false"
+            android:textSize="18dp"
+            android:layout_below="@+id/checkBox3"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignRight="@+id/checkBox3"
+            android:layout_alignEnd="@+id/checkBox3"
+            android:textColor="#474747"
+            android:fontFamily="Roboto-Thin"
+            android:onClick="itemClicked" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:text="Fri"
+            android:id="@+id/checkBox5"
+            android:checked="false"
+            android:textSize="18dp"
+            android:layout_below="@+id/checkBox4"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignRight="@+id/checkBox4"
+            android:layout_alignEnd="@+id/checkBox4"
+            android:textColor="#474747"
+            android:fontFamily="Roboto-Thin"
+            android:onClick="itemClicked" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:text="Sat"
+            android:id="@+id/checkBox6"
+            android:checked="false"
+            android:textSize="18dp"
+            android:layout_below="@+id/checkBox5"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignRight="@+id/checkBox5"
+            android:layout_alignEnd="@+id/checkBox5"
+            android:textColor="#474747"
+            android:fontFamily="Roboto-Thin"
+            android:onClick="itemClicked" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:text="Sun"
+            android:id="@+id/checkBox7"
+            android:checked="false"
+            android:textSize="18dp"
+            android:layout_below="@+id/checkBox6"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignRight="@+id/checkBox6"
+            android:layout_alignEnd="@+id/checkBox6"
+            android:textColor="#474747"
+            android:fontFamily="Roboto-Thin"
+            android:onClick="itemClicked" />
+
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="Start Time"
+            android:id="@+id/textView2"
+            android:textSize="17dp"
+            android:textAlignment="center"
+            android:layout_below="@+id/textView"
+            android:layout_toRightOf="@+id/checkBox"
+            android:layout_toEndOf="@+id/checkBox"
+            android:fontFamily="Roboto-Thin" />
+
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="End Time"
+            android:id="@+id/textView3"
+            android:textSize="17dp"
+            android:textAlignment="center"
+            android:layout_below="@+id/textView"
+            android:layout_alignLeft="@+id/mon_end_text"
+            android:layout_alignStart="@+id/mon_end_text"
+            android:fontFamily="Roboto-Thin" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="99:99"
+            android:id="@+id/mon_start_text"
+            android:layout_alignBottom="@+id/checkBox"
+            android:layout_below="@+id/textView2"
+            android:layout_toRightOf="@+id/checkBox"
+            android:layout_toEndOf="@+id/checkBox"
+            android:textAlignment="center"
+            android:gravity="center|center_vertical|center_horizontal"
+            android:textColor="#474747" />
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:text="Monday"
+            android:id="@+id/mon_start_button"
+            android:layout_below="@+id/textView2"
+            android:layout_toRightOf="@+id/mon_start_text"
+            android:layout_toEndOf="@+id/mon_start_text"
+            android:drawableRight="@drawable/ic_access_time_24dp"
+            android:onClick="onClick_start_time"
+            android:enabled="false" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="21:00"
+            android:id="@+id/mon_end_text"
+            android:textAlignment="center"
+            android:gravity="center|center_vertical|center_horizontal"
+            android:layout_alignBottom="@+id/mon_start_text"
+            android:layout_toLeftOf="@+id/mon_end_button"
+            android:layout_toStartOf="@+id/mon_end_button"
+            android:layout_below="@+id/textView3"
+            android:textColor="#474747" />
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:text="Monday"
+            android:id="@+id/mon_end_button"
+            android:drawableRight="@drawable/ic_access_time_24dp"
+            android:layout_below="@+id/textView3"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:onClick="onClick_end_time"
+            android:enabled="false"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="99:99"
+            android:id="@+id/tue_start_text"
+            android:textAlignment="center"
+            android:gravity="center|center_vertical|center_horizontal"
+            android:layout_alignTop="@+id/checkBox2"
+            android:layout_alignLeft="@+id/mon_start_text"
+            android:layout_alignStart="@+id/mon_start_text"
+            android:layout_above="@+id/checkBox3"
+            android:textColor="#474747" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="99:99"
+            android:id="@+id/wed_start_text"
+            android:textAlignment="center"
+            android:gravity="center|center_vertical|center_horizontal"
+            android:layout_below="@+id/tue_start_text"
+            android:layout_alignLeft="@+id/tue_start_text"
+            android:layout_alignStart="@+id/tue_start_text"
+            android:layout_alignBottom="@+id/checkBox3"
+            android:textColor="#474747" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="99:99"
+            android:id="@+id/thu_start_text"
+            android:textAlignment="center"
+            android:gravity="center|center_vertical|center_horizontal"
+            android:layout_alignTop="@+id/checkBox4"
+            android:layout_alignLeft="@+id/wed_start_text"
+            android:layout_alignStart="@+id/wed_start_text"
+            android:layout_above="@+id/checkBox5"
+            android:textColor="#474747" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="99:99"
+            android:id="@+id/fri_start_text"
+            android:textAlignment="center"
+            android:gravity="center|center_vertical|center_horizontal"
+            android:layout_below="@+id/thu_start_text"
+            android:layout_alignLeft="@+id/thu_start_text"
+            android:layout_alignStart="@+id/thu_start_text"
+            android:layout_above="@+id/checkBox6"
+            android:textColor="#474747" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="99:99"
+            android:id="@+id/sat_start_text"
+            android:textAlignment="center"
+            android:gravity="center|center_vertical|center_horizontal"
+            android:layout_alignTop="@+id/checkBox6"
+            android:layout_alignLeft="@+id/fri_start_text"
+            android:layout_alignStart="@+id/fri_start_text"
+            android:layout_above="@+id/checkBox7"
+            android:textColor="#474747" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="99:99"
+            android:id="@+id/sun_start_text"
+            android:textAlignment="center"
+            android:gravity="center|center_vertical|center_horizontal"
+            android:layout_below="@+id/sat_start_text"
+            android:layout_alignLeft="@+id/sat_start_text"
+            android:layout_alignStart="@+id/sat_start_text"
+            android:layout_alignBottom="@+id/checkBox7"
+            android:textColor="#474747" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="21:00"
+            android:id="@+id/tue_end_text"
+            android:textAlignment="center"
+            android:gravity="center|center_vertical|center_horizontal"
+            android:layout_alignTop="@+id/tue_start_text"
+            android:layout_alignLeft="@+id/mon_end_text"
+            android:layout_alignStart="@+id/mon_end_text"
+            android:layout_above="@+id/wed_start_text"
+            android:textColor="#474747" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="21:00"
+            android:id="@+id/wed_end_text"
+            android:textAlignment="center"
+            android:gravity="center|center_vertical|center_horizontal"
+            android:layout_below="@+id/tue_end_text"
+            android:layout_alignLeft="@+id/tue_end_text"
+            android:layout_alignStart="@+id/tue_end_text"
+            android:layout_alignBottom="@+id/wed_start_text"
+            android:textColor="#474747" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="21:00"
+            android:id="@+id/thu_end_text"
+            android:textAlignment="center"
+            android:gravity="center|center_vertical|center_horizontal"
+            android:layout_below="@+id/wed_end_text"
+            android:layout_alignLeft="@+id/wed_end_text"
+            android:layout_alignStart="@+id/wed_end_text"
+            android:layout_above="@+id/fri_start_text"
+            android:textColor="#474747" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="21:00"
+            android:id="@+id/fri_end_text"
+            android:textAlignment="center"
+            android:gravity="center|center_vertical|center_horizontal"
+            android:layout_below="@+id/thu_end_text"
+            android:layout_alignLeft="@+id/thu_end_text"
+            android:layout_alignStart="@+id/thu_end_text"
+            android:layout_alignBottom="@+id/fri_start_text"
+            android:textColor="#474747" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="21:00"
+            android:id="@+id/sat_end_text"
+            android:textAlignment="center"
+            android:gravity="center|center_vertical|center_horizontal"
+            android:layout_alignTop="@+id/sat_start_text"
+            android:layout_alignLeft="@+id/fri_end_text"
+            android:layout_alignStart="@+id/fri_end_text"
+            android:layout_above="@+id/sun_start_text"
+            android:textColor="#474747" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="21:00"
+            android:id="@+id/sun_end_text"
+            android:textAlignment="center"
+            android:gravity="center|center_vertical|center_horizontal"
+            android:layout_below="@+id/sat_end_text"
+            android:layout_alignLeft="@+id/sat_end_text"
+            android:layout_alignStart="@+id/sat_end_text"
+            android:layout_alignBottom="@+id/sun_start_text"
+            android:textColor="#474747" />
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:text="Tuesday"
+            android:id="@+id/tue_start_button"
+            android:layout_alignTop="@+id/tue_start_text"
+            android:layout_toRightOf="@+id/tue_start_text"
+            android:layout_toEndOf="@+id/tue_start_text"
+            android:drawableRight="@drawable/ic_access_time_24dp"
+            android:onClick="onClick_start_time"
+            android:enabled="false"/>
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:text="Tuesday"
+            android:id="@+id/tue_end_button"
+            android:layout_alignTop="@+id/tue_end_text"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:drawableRight="@drawable/ic_access_time_24dp"
+            android:onClick="onClick_end_time"
+            android:enabled="false"/>
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:text="Wednesday"
+            android:id="@+id/wed_start_button"
+            android:layout_below="@+id/tue_start_text"
+            android:layout_toRightOf="@+id/tue_start_text"
+            android:layout_toEndOf="@+id/tue_start_text"
+            android:drawableRight="@drawable/ic_access_time_24dp"
+            android:onClick="onClick_start_time"
+            android:enabled="false"/>
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:text="Wednesday"
+            android:id="@+id/wed_end_button"
+            android:layout_below="@+id/tue_end_text"
+            android:layout_toRightOf="@+id/tue_end_text"
+            android:layout_toEndOf="@+id/tue_end_text"
+            android:drawableRight="@drawable/ic_access_time_24dp"
+            android:onClick="onClick_end_time"
+            android:enabled="false"/>
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:text="Thursday"
+            android:id="@+id/thu_start_button"
+            android:layout_alignTop="@+id/thu_start_text"
+            android:layout_toRightOf="@+id/thu_start_text"
+            android:layout_toEndOf="@+id/thu_start_text"
+            android:drawableRight="@drawable/ic_access_time_24dp"
+            android:onClick="onClick_start_time"
+            android:enabled="false"/>
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:text="Thursday"
+            android:id="@+id/thu_end_button"
+            android:drawableRight="@drawable/ic_access_time_24dp"
+            android:onClick="onClick_end_time"
+            android:enabled="false"
+            android:layout_below="@+id/wed_end_text"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:text="Friday"
+            android:id="@+id/fri_start_button"
+            android:drawableRight="@drawable/ic_access_time_24dp"
+            android:layout_below="@+id/thu_start_text"
+            android:layout_toRightOf="@+id/thu_start_text"
+            android:layout_toEndOf="@+id/thu_start_text"
+            android:onClick="onClick_start_time"
+            android:enabled="false"/>
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:text="Friday"
+            android:id="@+id/fri_end_button"
+            android:drawableRight="@drawable/ic_access_time_24dp"
+            android:layout_below="@+id/thu_end_text"
+            android:layout_alignRight="@+id/editName"
+            android:layout_alignEnd="@+id/editName"
+            android:onClick="onClick_end_time"
+            android:enabled="false"/>
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:text="Saturday"
+            android:id="@+id/sat_start_button"
+            android:layout_alignTop="@+id/sat_start_text"
+            android:layout_toRightOf="@+id/sat_start_text"
+            android:layout_toEndOf="@+id/sat_start_text"
+            android:drawableRight="@drawable/ic_access_time_24dp"
+            android:onClick="onClick_start_time"
+            android:enabled="false"/>
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:text="Saturday"
+            android:id="@+id/sat_end_button"
+            android:layout_alignTop="@+id/sat_end_text"
+            android:layout_toRightOf="@+id/sat_end_text"
+            android:layout_toEndOf="@+id/sat_end_text"
+            android:drawableRight="@drawable/ic_access_time_24dp"
+            android:onClick="onClick_end_time"
+            android:enabled="false"/>
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:text="Sunday"
+            android:id="@+id/sun_start_button"
+            android:layout_below="@+id/sat_start_text"
+            android:layout_toRightOf="@+id/sat_start_text"
+            android:layout_toEndOf="@+id/sat_start_text"
+            android:drawableRight="@drawable/ic_access_time_24dp"
+            android:onClick="onClick_start_time"
+            android:enabled="false"/>
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:text="Sunday"
+            android:id="@+id/sun_end_button"
+            android:layout_below="@+id/sat_end_text"
+            android:layout_toRightOf="@+id/sun_end_text"
+            android:layout_toEndOf="@+id/sun_end_text"
+            android:drawableRight="@drawable/ic_access_time_24dp"
+            android:enabled="false"/>
 
 
     </RelativeLayout>
