@@ -5,4 +5,5 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
+    <string name="aboutUsContent">This is attendence marker app which tracks your attendence using your phone location. Please give access to GPS data. For Any Query Contact on : ssamitkmr@gmail.com, rahulnk521@gmail.com</string>
 </resources>

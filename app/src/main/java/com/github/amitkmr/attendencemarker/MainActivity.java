@@ -94,12 +94,15 @@ public class MainActivity extends AppCompatActivity
             Intent nextScreen = new Intent(getApplicationContext(), Course.class);
             startActivity(nextScreen);
         } else if (id == R.id.nav_aboutus) {
+            Intent nextScreen = new Intent(getApplicationContext(), AboutUs.class);
+            startActivity(nextScreen);
 
-        } else if (id == R.id.nav_share) {
-            // do something
-        } else if (id == R.id.nav_send) {
-            // do something
         }
+//        else if (id == R.id.nav_share) {
+//            // do something
+//        } else if (id == R.id.nav_send) {
+//            // do something
+//        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
