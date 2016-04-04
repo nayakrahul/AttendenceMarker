@@ -21,6 +21,7 @@ public class Fill_Course extends AppCompatActivity implements TimePickerFragment
     TextView id;
     TextView name;
     private DBHelper mydb ;
+    String time1, time2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +39,10 @@ public class Fill_Course extends AppCompatActivity implements TimePickerFragment
 
     public void onClick(View v)
     {
-            if (mydb.insertCourse(id.getText().toString(), name.getText().toString())){
+            String[] parts1 = time1.split(":");
+            String[] parts2 = time2.split(":");
+            if (mydb.insertCourse(id.getText().toString(), name.getText().toString(),
+                    Integer.parseInt(parts1[0]), Integer.parseInt(parts1[1]), Integer.parseInt(parts2[0]), Integer.parseInt(parts2[1]))){
                 Intent intent = new Intent(getApplicationContext(),MainActivity.class);
                 startActivity(intent);
                 }
@@ -48,8 +52,10 @@ public class Fill_Course extends AppCompatActivity implements TimePickerFragment
                 }
     }
 
+    int flag;
     public void onClick_start_time(View v)
     {
+        flag = 0;
         FragmentManager fm = getFragmentManager();
         TimePickerFragment dialogFragment = new TimePickerFragment ();
         dialogFragment.show(fm, "Sample Fragment");
@@ -57,16 +63,26 @@ public class Fill_Course extends AppCompatActivity implements TimePickerFragment
 
     public void onClick_end_time(View v)
     {
+        flag = 1;
         FragmentManager fm = getFragmentManager();
         TimePickerFragment dialogFragment = new TimePickerFragment ();
         dialogFragment.show(fm, "Sample Fragment");
     }
 
-    private TextView name3;
+    private TextView start_time;
+    private TextView end_time;
     @Override
     public void someEvent(String s) {
-        name3= (TextView) findViewById(R.id.time1);
-        name3.setText(s);
+        if (flag == 0) {
+            start_time = (TextView) findViewById(R.id.time1);
+            start_time.setText(s);
+            time1 = s;
+        }
+        else {
+            end_time = (TextView) findViewById(R.id.time2);
+            end_time.setText(s);
+            time2 = s;
+        }
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
