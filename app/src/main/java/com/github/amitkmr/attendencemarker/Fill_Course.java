@@ -2,6 +2,8 @@ package com.github.amitkmr.attendencemarker;
 
 
 import android.app.ActionBar;
+import android.app.Fragment;
+import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -10,10 +12,12 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.sql.Time;
+
 /**
  * Created by RAHUL on 03-04-2016.
  */
-public class Fill_Course extends AppCompatActivity {
+public class Fill_Course extends AppCompatActivity implements TimePickerFragment.onSomeEventListener {
     TextView id;
     TextView name;
     private DBHelper mydb ;
@@ -44,6 +48,26 @@ public class Fill_Course extends AppCompatActivity {
                 }
     }
 
+    public void onClick_start_time(View v)
+    {
+        FragmentManager fm = getFragmentManager();
+        TimePickerFragment dialogFragment = new TimePickerFragment ();
+        dialogFragment.show(fm, "Sample Fragment");
+    }
+
+    public void onClick_end_time(View v)
+    {
+        FragmentManager fm = getFragmentManager();
+        TimePickerFragment dialogFragment = new TimePickerFragment ();
+        dialogFragment.show(fm, "Sample Fragment");
+    }
+
+    private TextView name3;
+    @Override
+    public void someEvent(String s) {
+        name3= (TextView) findViewById(R.id.time1);
+        name3.setText(s);
+    }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
