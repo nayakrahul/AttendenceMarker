@@ -119,6 +119,8 @@ public class Fill_Course extends AppCompatActivity implements TimePickerFragment
                         Integer.parseInt(parts1[0]), Integer.parseInt(parts1[1]),
                         Integer.parseInt(parts2[0]), Integer.parseInt(parts2[1]));
             }
+        Intent nextScreen = new Intent(getApplicationContext(), Course.class);
+        startActivity(nextScreen);
     }
 
     //on playing with checkboxes
