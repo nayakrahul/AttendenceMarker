@@ -22,7 +22,7 @@ public class AttendanceDetails extends AppCompatActivity {
         String data;
         data = mydb.getData(id);
 
-//        desc = (TextView) findViewById(R.id.description);
+//        desc = (TextView) findViewById(R.id.courseName);
 //        desc.setText(data);
 
         // return to to the home screen

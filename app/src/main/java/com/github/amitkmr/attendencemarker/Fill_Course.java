@@ -27,10 +27,7 @@ public class Fill_Course extends AppCompatActivity implements TimePickerFragment
     TextView id;
     TextView name;
     private DBHelper mydb ;
-    // create a new hashtable
-    Map<String, String> dict_StartTime = new HashMap<String, String>();
-    Map<String, String> dict_EndTime = new HashMap<String, String>();
-
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,9 +53,12 @@ public class Fill_Course extends AppCompatActivity implements TimePickerFragment
             checkBox_sat = (CheckBox) findViewById(R.id.checkBoxSat);
             checkBox_sun = (CheckBox) findViewById(R.id.checkBoxSun);
             String time1, time2;
+            TextView timeText1, timeText2;
             if(checkBox_mon.isChecked()){
-                time1 = dict_StartTime.get("Mon");
-                time2 = dict_EndTime.get("Mon");
+                timeText1 = (TextView) findViewById(R.id.mon_start_text);
+                time1 = timeText1.getText().toString();
+                timeText2 = (TextView) findViewById(R.id.mon_end_text);
+                time2 = timeText2.getText().toString();
                 String[] parts1 = time1.split(":");
                 String[] parts2 = time2.split(":");
                 mydb.insertCourse(id.getText().toString(), name.getText().toString(), "Monday",
@@ -66,8 +66,10 @@ public class Fill_Course extends AppCompatActivity implements TimePickerFragment
                         Integer.parseInt(parts2[0]), Integer.parseInt(parts2[1]));
             }
             if(checkBox_tue.isChecked()){
-                time1 = dict_StartTime.get("Tue");
-                time2 = dict_EndTime.get("Tue");
+                timeText1 = (TextView) findViewById(R.id.tue_start_text);
+                time1 = timeText1.getText().toString();
+                timeText2 = (TextView) findViewById(R.id.tue_end_text);
+                time2 = timeText2.getText().toString();
                 String[] parts1 = time1.split(":");
                 String[] parts2 = time2.split(":");
                 mydb.insertCourse(id.getText().toString(), name.getText().toString(), "Tuesday",
@@ -75,8 +77,10 @@ public class Fill_Course extends AppCompatActivity implements TimePickerFragment
                         Integer.parseInt(parts2[0]), Integer.parseInt(parts2[1]));
             }
             if(checkBox_wed.isChecked()){
-                time1 = dict_StartTime.get("Wed");
-                time2 = dict_EndTime.get("Wed");
+                timeText1 = (TextView) findViewById(R.id.wed_start_text);
+                time1 = timeText1.getText().toString();
+                timeText2 = (TextView) findViewById(R.id.wed_end_text);
+                time2 = timeText2.getText().toString();
                 String[] parts1 = time1.split(":");
                 String[] parts2 = time2.split(":");
                 mydb.insertCourse(id.getText().toString(), name.getText().toString(), "Wednesday",
@@ -84,8 +88,10 @@ public class Fill_Course extends AppCompatActivity implements TimePickerFragment
                         Integer.parseInt(parts2[0]), Integer.parseInt(parts2[1]));
             }
             if(checkBox_thu.isChecked()){
-                time1 = dict_StartTime.get("Thu");
-                time2 = dict_EndTime.get("Thu");
+                timeText1 = (TextView) findViewById(R.id.thu_start_text);
+                time1 = timeText1.getText().toString();
+                timeText2 = (TextView) findViewById(R.id.thu_end_text);
+                time2 = timeText2.getText().toString();
                 String[] parts1 = time1.split(":");
                 String[] parts2 = time2.split(":");
                 mydb.insertCourse(id.getText().toString(), name.getText().toString(), "Thursday",
@@ -93,8 +99,10 @@ public class Fill_Course extends AppCompatActivity implements TimePickerFragment
                         Integer.parseInt(parts2[0]), Integer.parseInt(parts2[1]));
             }
             if(checkBox_fri.isChecked()){
-                time1 = dict_StartTime.get("Fri");
-                time2 = dict_EndTime.get("Fri");
+                timeText1 = (TextView) findViewById(R.id.fri_start_text);
+                time1 = timeText1.getText().toString();
+                timeText2 = (TextView) findViewById(R.id.fri_end_text);
+                time2 = timeText2.getText().toString();
                 String[] parts1 = time1.split(":");
                 String[] parts2 = time2.split(":");
                 mydb.insertCourse(id.getText().toString(), name.getText().toString(), "Friday",
@@ -102,8 +110,10 @@ public class Fill_Course extends AppCompatActivity implements TimePickerFragment
                         Integer.parseInt(parts2[0]), Integer.parseInt(parts2[1]));
             }
             if(checkBox_sat.isChecked()){
-                time1 = dict_StartTime.get("Sat");
-                time2 = dict_EndTime.get("Sat");
+                timeText1 = (TextView) findViewById(R.id.sat_start_text);
+                time1 = timeText1.getText().toString();
+                timeText2 = (TextView) findViewById(R.id.sat_end_text);
+                time2 = timeText2.getText().toString();
                 String[] parts1 = time1.split(":");
                 String[] parts2 = time2.split(":");
                 mydb.insertCourse(id.getText().toString(), name.getText().toString(), "Saturday",
@@ -111,8 +121,10 @@ public class Fill_Course extends AppCompatActivity implements TimePickerFragment
                         Integer.parseInt(parts2[0]), Integer.parseInt(parts2[1]));
             }
             if(checkBox_sun.isChecked()){
-                time1 = dict_StartTime.get("Sun");
-                time2 = dict_EndTime.get("Sun");
+                timeText1 = (TextView) findViewById(R.id.sun_start_text);
+                time1 = timeText1.getText().toString();
+                timeText2 = (TextView) findViewById(R.id.sun_end_text);
+                time2 = timeText2.getText().toString();
                 String[] parts1 = time1.split(":");
                 String[] parts2 = time2.split(":");
                 mydb.insertCourse(id.getText().toString(), name.getText().toString(), "Sunday",
@@ -204,77 +216,63 @@ public class Fill_Course extends AppCompatActivity implements TimePickerFragment
                 if (flag == 0) {
                     start_time = (TextView) findViewById(R.id.mon_start_text);
                     start_time.setText(s);
-                    dict_StartTime.put("Mon", s);
                 } else {
                     end_time = (TextView) findViewById(R.id.mon_end_text);
                     end_time.setText(s);
-                    dict_EndTime.put("Mon", s);
                 }
                 break;
             case "Tuesday":
                 if (flag == 0) {
                     start_time = (TextView) findViewById(R.id.tue_start_text);
                     start_time.setText(s);
-                    dict_StartTime.put("Tue", s);;
                 } else {
                     end_time = (TextView) findViewById(R.id.tue_end_text);
                     end_time.setText(s);
-                    dict_EndTime.put("Tue", s);
                 }
                 break;
             case "Wednesday":
                 if (flag == 0) {
                     start_time = (TextView) findViewById(R.id.wed_start_text);
                     start_time.setText(s);
-                    dict_StartTime.put("Wed", s);
                 } else {
                     end_time = (TextView) findViewById(R.id.wed_end_text);
                     end_time.setText(s);
-                    dict_EndTime.put("Wed", s);
                 }
                 break;
             case "Thursday":
                 if (flag == 0) {
                     start_time = (TextView) findViewById(R.id.thu_start_text);
                     start_time.setText(s);
-                    dict_StartTime.put("Thu", s);
                 } else {
                     end_time = (TextView) findViewById(R.id.thu_end_text);
                     end_time.setText(s);
-                    dict_EndTime.put("Thu", s);
                 }
                 break;
             case "Friday":
                 if (flag == 0) {
                     start_time = (TextView) findViewById(R.id.fri_start_text);
                     start_time.setText(s);
-                    dict_StartTime.put("Fri", s);
                 } else {
                     end_time = (TextView) findViewById(R.id.fri_end_text);
                     end_time.setText(s);
-                    dict_EndTime.put("Fri", s);
                 }
                 break;
             case "Saturday":
                 if (flag == 0) {
                     start_time = (TextView) findViewById(R.id.sat_start_text);
                     start_time.setText(s);
-                    dict_StartTime.put("Sat", s);;
                 } else {
                     end_time = (TextView) findViewById(R.id.sat_end_text);
                     end_time.setText(s);
-                    dict_EndTime.put("Sat", s);
                 }
                 break;
             case "Sunday":
                 if (flag == 0) {
                     start_time = (TextView) findViewById(R.id.sun_start_text);
                     start_time.setText(s);
-                    dict_StartTime.put("Sun", s);
                 } else {
                     end_time = (TextView) findViewById(R.id.sun_end_text);
                     end_time.setText(s);
-                    dict_EndTime.put("Sun", s);
                 }
                 break;
         }
