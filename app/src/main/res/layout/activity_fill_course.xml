@@ -26,7 +26,8 @@
             android:layout_alignRight="@+id/textView5"
             android:layout_alignEnd="@+id/textView5"
             android:fontFamily="Roboto-Thin"
-            android:textColor="#797878" />
+            android:textColor="#797878"
+            android:textSize="20dp" />
 
         <Button
             android:id="@+id/button1"
@@ -37,7 +38,11 @@
             android:fontFamily="Roboto-Thin"
             android:layout_below="@+id/button"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+            android:layout_alignParentStart="true"
+            android:background="#9BDDFF"
+            android:layout_marginTop="10dp"
+            android:textSize="18dp"
+            android:textColor="#4b4b4b" />
 
         <TextView
             android:id="@+id/textView5"
@@ -49,7 +54,8 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:fontFamily="Roboto-Thin"
-            android:textColor="#797878" />
+            android:textColor="#797878"
+            android:textSize="20dp" />
 
         <EditText
             android:layout_width="wrap_content"
@@ -59,8 +65,9 @@
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
             android:layout_toEndOf="@+id/textView5"
-            android:layout_toRightOf="@+id/textView5"
-            android:fontFamily="Roboto-Thin" />
+            android:fontFamily="Roboto-Thin"
+            android:layout_alignLeft="@+id/textView2"
+            android:layout_alignStart="@+id/textView2" />
 
         <EditText
             android:layout_width="wrap_content"
@@ -70,8 +77,9 @@
             android:layout_alignRight="@+id/editId"
             android:layout_alignEnd="@+id/editId"
             android:layout_toEndOf="@+id/textView1"
-            android:layout_toRightOf="@+id/textView1"
-            android:fontFamily="Roboto-Thin" />
+            android:fontFamily="Roboto-Thin"
+            android:layout_alignLeft="@+id/editId"
+            android:layout_alignStart="@+id/editId" />
 
         <Button
             android:layout_width="match_parent"
@@ -80,10 +88,13 @@
             android:id="@+id/button"
             android:fontFamily="Roboto-Thin"
             android:layout_alignWithParentIfMissing="false"
-            android:layout_below="@+id/textView5"
-            android:layout_marginTop="500dp"
-            android:layout_alignRight="@+id/button1"
-            android:layout_alignEnd="@+id/button1" />
+            android:layout_marginTop="50dp"
+            android:background="#9BDDFF"
+            android:layout_below="@+id/checkBoxSun"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:textSize="18dp"
+            android:textColor="#4b4b4b" />
 
         <CheckBox
             android:layout_width="wrap_content"
@@ -108,14 +119,16 @@
             android:text="Schedule"
             android:id="@+id/textView"
             android:layout_below="@+id/textView5"
-            android:background="@drawable/edit_text_bottom_border"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_marginTop="36dp"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
             android:textColor="#797878"
-            android:fontFamily="Roboto-Thin" />
+            android:fontFamily="Roboto-Thin"
+            android:background="@drawable/edit_text_bottom_border"
+            android:textSize="26dp"
+            android:layout_marginBottom="10dp" />
 
         <CheckBox
             android:layout_width="wrap_content"
@@ -241,7 +254,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="99:99"
+            android:text="08:00"
             android:id="@+id/mon_start_text"
             android:layout_alignBottom="@+id/checkBoxMon"
             android:layout_below="@+id/textView2"
@@ -268,7 +281,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="21:00"
+            android:text="09:00"
             android:id="@+id/mon_end_text"
             android:textAlignment="center"
             android:gravity="center|center_vertical|center_horizontal"
@@ -295,7 +308,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="99:99"
+            android:text="08:00"
             android:id="@+id/tue_start_text"
             android:textAlignment="center"
             android:gravity="center|center_vertical|center_horizontal"
@@ -309,7 +322,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="99:99"
+            android:text="08:00"
             android:id="@+id/wed_start_text"
             android:textAlignment="center"
             android:gravity="center|center_vertical|center_horizontal"
@@ -323,7 +336,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="99:99"
+            android:text="08:00"
             android:id="@+id/thu_start_text"
             android:textAlignment="center"
             android:gravity="center|center_vertical|center_horizontal"
@@ -337,7 +350,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="99:99"
+            android:text="08:00"
             android:id="@+id/fri_start_text"
             android:textAlignment="center"
             android:gravity="center|center_vertical|center_horizontal"
@@ -351,7 +364,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="99:99"
+            android:text="08:00"
             android:id="@+id/sat_start_text"
             android:textAlignment="center"
             android:gravity="center|center_vertical|center_horizontal"
@@ -365,7 +378,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="99:99"
+            android:text="08:00"
             android:id="@+id/sun_start_text"
             android:textAlignment="center"
             android:gravity="center|center_vertical|center_horizontal"
@@ -379,7 +392,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="21:00"
+            android:text="09:00"
             android:id="@+id/tue_end_text"
             android:textAlignment="center"
             android:gravity="center|center_vertical|center_horizontal"
@@ -393,7 +406,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="21:00"
+            android:text="09:00"
             android:id="@+id/wed_end_text"
             android:textAlignment="center"
             android:gravity="center|center_vertical|center_horizontal"
@@ -407,7 +420,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="21:00"
+            android:text="09:00"
             android:id="@+id/thu_end_text"
             android:textAlignment="center"
             android:gravity="center|center_vertical|center_horizontal"
@@ -421,7 +434,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="21:00"
+            android:text="09:00"
             android:id="@+id/fri_end_text"
             android:textAlignment="center"
             android:gravity="center|center_vertical|center_horizontal"
@@ -435,7 +448,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="21:00"
+            android:text="09:00"
             android:id="@+id/sat_end_text"
             android:textAlignment="center"
             android:gravity="center|center_vertical|center_horizontal"
@@ -449,7 +462,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="21:00"
+            android:text="09:00"
             android:id="@+id/sun_end_text"
             android:textAlignment="center"
             android:gravity="center|center_vertical|center_horizontal"
