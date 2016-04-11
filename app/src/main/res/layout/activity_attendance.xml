@@ -16,7 +16,7 @@
         android:layout_height="wrap_content"
         android:text="edit location"
         android:id="@+id/button2"
-        android:layout_gravity="right"
+        android:layout_gravity="center_horizontal"
         android:layout_marginRight="20dp"
         android:layout_marginTop="10dp"
         android:background="#e76a6a" />

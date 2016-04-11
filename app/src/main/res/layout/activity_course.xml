@@ -1,23 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:id="@+id/courses">
+    android:layout_height="wrap_content"
+    android:id="@+id/courses"
+    android:gravity="center_vertical">
 
 
     <Button
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/add_course_height"
             android:text="Add Course"
             android:id="@+id/add_course"
-            android:layout_marginTop="05dp"
-            android:background="#f57e7e"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:textAlignment="center"
+            android:background="#9BDDFF"
             android:nestedScrollingEnabled="false"
             android:onClick="onClick"
             android:layout_below="@+id/course_list"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-        android:fontFamily="Roboto-Thin" />
+        android:fontFamily="Roboto-Thin"
+        android:textSize="@dimen/add_course_text_size" />
 
 
 

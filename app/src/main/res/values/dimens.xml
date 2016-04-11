@@ -7,4 +7,7 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="aboutUsMargin">20dp</dimen>
+    <dimen name="daysTextSize">25dp</dimen>
+    <dimen name="add_course_text_size">24dp</dimen>
+    <dimen name="add_course_height">80dp</dimen>
 </resources>
