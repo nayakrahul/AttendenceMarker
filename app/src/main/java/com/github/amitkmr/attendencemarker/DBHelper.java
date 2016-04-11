@@ -30,7 +30,7 @@ public class DBHelper extends SQLiteOpenHelper {
         // TODO Auto-generated method stub
         db.execSQL(
                 "create table course_info " +
-                        "(id text primary key, name text, day text, start_hour int, start_minute int, end_hour int, end_minute int)"
+                        "(id text, name text, day text, start_hour int, start_minute int, end_hour int, end_minute int)"
         );
     }
 

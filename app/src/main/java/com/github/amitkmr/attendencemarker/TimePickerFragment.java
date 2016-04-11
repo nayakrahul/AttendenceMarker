@@ -37,8 +37,8 @@ public class TimePickerFragment extends DialogFragment {
             Button button = (Button) rootView.findViewById(R.id.button);
             button.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
-                    final int hour = timePicker.getHour();
-                    final int min = timePicker.getMinute();
+                    final int hour = timePicker.getCurrentHour();
+                    final int min = timePicker.getCurrentMinute();
                     someEventListener.someEvent(String.format("%02d", hour)+":"+String.format("%02d", min));
                     dismiss();
                 }

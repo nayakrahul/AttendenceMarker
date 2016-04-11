@@ -92,7 +92,7 @@ public class Fill_Course extends AppCompatActivity implements TimePickerFragment
                         Integer.parseInt(parts1[0]), Integer.parseInt(parts1[1]),
                         Integer.parseInt(parts2[0]), Integer.parseInt(parts2[1]));
             }
-            if(checkBox_thu.isChecked()){
+            if(checkBox_fri.isChecked()){
                 time1 = dict_StartTime.get("Fri");
                 time2 = dict_EndTime.get("Fri");
                 String[] parts1 = time1.split(":");
@@ -101,7 +101,7 @@ public class Fill_Course extends AppCompatActivity implements TimePickerFragment
                         Integer.parseInt(parts1[0]), Integer.parseInt(parts1[1]),
                         Integer.parseInt(parts2[0]), Integer.parseInt(parts2[1]));
             }
-            if(checkBox_thu.isChecked()){
+            if(checkBox_sat.isChecked()){
                 time1 = dict_StartTime.get("Sat");
                 time2 = dict_EndTime.get("Sat");
                 String[] parts1 = time1.split(":");
@@ -110,7 +110,7 @@ public class Fill_Course extends AppCompatActivity implements TimePickerFragment
                         Integer.parseInt(parts1[0]), Integer.parseInt(parts1[1]),
                         Integer.parseInt(parts2[0]), Integer.parseInt(parts2[1]));
             }
-            if(checkBox_thu.isChecked()){
+            if(checkBox_sun.isChecked()){
                 time1 = dict_StartTime.get("Sun");
                 time2 = dict_EndTime.get("Sun");
                 String[] parts1 = time1.split(":");
