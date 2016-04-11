@@ -1,24 +1,18 @@
 package com.github.amitkmr.attendencemarker;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.Typeface;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 /**
  * Created by RAHUL on 01-04-2016.
@@ -46,21 +40,9 @@ public class Course extends AppCompatActivity {
             if(!courseDisplayed.contains(objText)) {
                 courseDisplayed.add(text);
                 TextView textView = new TextView(this);
-                textView.setBackgroundResource(R.drawable.tags_rounded_corners);
+                textView.setBackgroundResource(R.drawable.course_border);
                 GradientDrawable drawable = (GradientDrawable) textView.getBackground();
-                if (i % 2 == 0) {
-                    Random rand = new Random();
-                    int r = rand.nextInt(255);
-                    int g = rand.nextInt(255);
-                    int b = rand.nextInt(255);
-                    drawable.setColor(Color.rgb(r, g, b));
-                } else {
-                    Random rand = new Random();
-                    int r = rand.nextInt(255);
-                    int g = rand.nextInt(255);
-                    int b = rand.nextInt(255);
-                    drawable.setColor(Color.rgb(r, g, b));
-                }
+                drawable.setColor(Color.rgb(255, 255, 255));
                 textView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
                         LinearLayout.LayoutParams.WRAP_CONTENT));
                 LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) textView.getLayoutParams();
