@@ -10,7 +10,7 @@
             android:layout_width="fill_parent"
             android:layout_height="@dimen/add_course_height"
             android:text="Add Course"
-            android:id="@+id/add_course"
+            android:id="@+id/attendance_button"
         android:gravity="center"
             android:textAlignment="center"
             android:background="#9BDDFF"

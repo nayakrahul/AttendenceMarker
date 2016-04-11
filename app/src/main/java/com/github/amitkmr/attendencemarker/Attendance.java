@@ -28,6 +28,7 @@ public class Attendance extends AppCompatActivity {
         String data;
         data = mydb.getData(id);
 
+        // set the course Name
         desc = (TextView) findViewById(R.id.courseName);
         desc.setText(data);
 
@@ -50,5 +51,10 @@ public class Attendance extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    public void onClickAttendanceDetails(View v) {
+        Intent nextScreen = new Intent(getApplicationContext(), AttendanceDetails.class);
+        startActivity(nextScreen);
     }
 }

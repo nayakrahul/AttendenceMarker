@@ -7,23 +7,11 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 public class AttendanceDetails extends AppCompatActivity {
-    private DBHelper mydb ;
-    private TextView desc;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_course_details);
-
-        Intent intent = getIntent();
-        String id = intent.getExtras().getString("id");
-        mydb = new DBHelper(this);
-
-        String data;
-        data = mydb.getData(id);
-
-//        desc = (TextView) findViewById(R.id.courseName);
-//        desc.setText(data);
 
         // return to to the home screen
         android.support.v7.app.ActionBar actionBar = getSupportActionBar();
