@@ -15,6 +15,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.sql.Time;
+import java.util.Dictionary;
+import java.util.Hashtable;
+import java.util.Map;
+import java.util.HashMap;
 
 /**
  * Created by RAHUL on 03-04-2016.
@@ -23,16 +27,17 @@ public class Fill_Course extends AppCompatActivity implements TimePickerFragment
     TextView id;
     TextView name;
     private DBHelper mydb ;
-    String time1, time2;
+    // create a new hashtable
+    Map<String, String> dict_StartTime = new HashMap<String, String>();
+    Map<String, String> dict_EndTime = new HashMap<String, String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fill_course);
+
         id = (TextView) findViewById(R.id.editId);
         name = (TextView) findViewById(R.id.editName);
-
-
         mydb = new DBHelper(this);
 
         android.support.v7.app.ActionBar actionBar = getSupportActionBar();
@@ -40,107 +45,130 @@ public class Fill_Course extends AppCompatActivity implements TimePickerFragment
         actionBar.setDisplayHomeAsUpEnabled(true);
     }
 
+    CheckBox checkBox_mon, checkBox_tue, checkBox_wed, checkBox_thu, checkBox_fri, checkBox_sat, checkBox_sun;
     public void onClick(View v)
     {
-            String[] parts1 = time1.split(":");
-            String[] parts2 = time2.split(":");
-            if (mydb.insertCourse(id.getText().toString(), name.getText().toString(),
-                    Integer.parseInt(parts1[0]), Integer.parseInt(parts1[1]), Integer.parseInt(parts2[0]), Integer.parseInt(parts2[1]))){
-                Intent intent = new Intent(getApplicationContext(),MainActivity.class);
-                startActivity(intent);
-                }
-                else{
-                Intent intent = new Intent(getApplicationContext(),Course.class);
-                startActivity(intent);
-                }
+            checkBox_mon = (CheckBox) findViewById(R.id.checkBoxMon);
+            checkBox_tue = (CheckBox) findViewById(R.id.checkBoxTue);
+            checkBox_wed = (CheckBox) findViewById(R.id.checkBoxWed);
+            checkBox_thu = (CheckBox) findViewById(R.id.checkBoxThu);
+            checkBox_fri = (CheckBox) findViewById(R.id.checkBoxFri);
+            checkBox_sat = (CheckBox) findViewById(R.id.checkBoxSat);
+            checkBox_sun = (CheckBox) findViewById(R.id.checkBoxSun);
+            String time1, time2;
+            if(checkBox_mon.isChecked()){
+                time1 = dict_StartTime.get("Mon");
+                time2 = dict_EndTime.get("Mon");
+                String[] parts1 = time1.split(":");
+                String[] parts2 = time2.split(":");
+                mydb.insertCourse(id.getText().toString(), name.getText().toString(), "Monday",
+                        Integer.parseInt(parts1[0]), Integer.parseInt(parts1[1]),
+                        Integer.parseInt(parts2[0]), Integer.parseInt(parts2[1]));
+            }
+            if(checkBox_tue.isChecked()){
+                time1 = dict_StartTime.get("Tue");
+                time2 = dict_EndTime.get("Tue");
+                String[] parts1 = time1.split(":");
+                String[] parts2 = time2.split(":");
+                mydb.insertCourse(id.getText().toString(), name.getText().toString(), "Tuesday",
+                        Integer.parseInt(parts1[0]), Integer.parseInt(parts1[1]),
+                        Integer.parseInt(parts2[0]), Integer.parseInt(parts2[1]));
+            }
+            if(checkBox_wed.isChecked()){
+                time1 = dict_StartTime.get("Wed");
+                time2 = dict_EndTime.get("Wed");
+                String[] parts1 = time1.split(":");
+                String[] parts2 = time2.split(":");
+                mydb.insertCourse(id.getText().toString(), name.getText().toString(), "Wednesday",
+                        Integer.parseInt(parts1[0]), Integer.parseInt(parts1[1]),
+                        Integer.parseInt(parts2[0]), Integer.parseInt(parts2[1]));
+            }
+            if(checkBox_thu.isChecked()){
+                time1 = dict_StartTime.get("Thu");
+                time2 = dict_EndTime.get("Thu");
+                String[] parts1 = time1.split(":");
+                String[] parts2 = time2.split(":");
+                mydb.insertCourse(id.getText().toString(), name.getText().toString(), "Thursday",
+                        Integer.parseInt(parts1[0]), Integer.parseInt(parts1[1]),
+                        Integer.parseInt(parts2[0]), Integer.parseInt(parts2[1]));
+            }
+            if(checkBox_thu.isChecked()){
+                time1 = dict_StartTime.get("Fri");
+                time2 = dict_EndTime.get("Fri");
+                String[] parts1 = time1.split(":");
+                String[] parts2 = time2.split(":");
+                mydb.insertCourse(id.getText().toString(), name.getText().toString(), "Friday",
+                        Integer.parseInt(parts1[0]), Integer.parseInt(parts1[1]),
+                        Integer.parseInt(parts2[0]), Integer.parseInt(parts2[1]));
+            }
+            if(checkBox_thu.isChecked()){
+                time1 = dict_StartTime.get("Sat");
+                time2 = dict_EndTime.get("Sat");
+                String[] parts1 = time1.split(":");
+                String[] parts2 = time2.split(":");
+                mydb.insertCourse(id.getText().toString(), name.getText().toString(), "Saturday",
+                        Integer.parseInt(parts1[0]), Integer.parseInt(parts1[1]),
+                        Integer.parseInt(parts2[0]), Integer.parseInt(parts2[1]));
+            }
+            if(checkBox_thu.isChecked()){
+                time1 = dict_StartTime.get("Sun");
+                time2 = dict_EndTime.get("Sun");
+                String[] parts1 = time1.split(":");
+                String[] parts2 = time2.split(":");
+                mydb.insertCourse(id.getText().toString(), name.getText().toString(), "Sunday",
+                        Integer.parseInt(parts1[0]), Integer.parseInt(parts1[1]),
+                        Integer.parseInt(parts2[0]), Integer.parseInt(parts2[1]));
+            }
     }
 
+    //on playing with checkboxes
     public void itemClicked(View v) {
         //code to check if this checkbox is checked!
         CheckBox checkBox = (CheckBox)v;
-        if(checkBox.isChecked()){
-            String checkText = checkBox.getText().toString();
-            Button b1,b2;
-            switch (checkText) {
+        boolean check;
+        if (checkBox.isChecked())
+            check = true;
+        else
+            check = false;
+        String checkText = checkBox.getText().toString();
+        Button b1,b2;
+        switch (checkText) {
                 case "Mon":
                     b1 = (Button) findViewById(R.id.mon_start_button);
-                    b1.setEnabled(true);
+                    b1.setEnabled(check);
                     b2 = (Button) findViewById(R.id.mon_end_button);
-                    b2.setEnabled(true);
+                    b2.setEnabled(check);
                 case "Tue":
                     b1 = (Button) findViewById(R.id.tue_start_button);
-                    b1.setEnabled(true);
+                    b1.setEnabled(check);
                     b2 = (Button) findViewById(R.id.tue_end_button);
-                    b2.setEnabled(true);
+                    b2.setEnabled(check);
                 case "Wed":
                     b1 = (Button) findViewById(R.id.wed_start_button);
-                    b1.setEnabled(true);
+                    b1.setEnabled(check);
                     b2 = (Button) findViewById(R.id.wed_end_button);
-                    b2.setEnabled(true);
+                    b2.setEnabled(check);
                 case "Thu":
                     b1 = (Button) findViewById(R.id.thu_start_button);
-                    b1.setEnabled(true);
+                    b1.setEnabled(check);
                     b2 = (Button) findViewById(R.id.thu_end_button);
-                    b2.setEnabled(true);
+                    b2.setEnabled(check);
                 case "Fri":
                     b1 = (Button) findViewById(R.id.fri_start_button);
-                    b1.setEnabled(true);
+                    b1.setEnabled(check);
                     b2 = (Button) findViewById(R.id.fri_end_button);
-                    b2.setEnabled(true);
+                    b2.setEnabled(check);
                 case "Sat":
                     b1 = (Button) findViewById(R.id.sat_start_button);
-                    b1.setEnabled(true);
+                    b1.setEnabled(check);
                     b2 = (Button) findViewById(R.id.sat_end_button);
-                    b2.setEnabled(true);
+                    b2.setEnabled(check);
                 case "Sun":
                     b1 = (Button) findViewById(R.id.sun_start_button);
-                    b1.setEnabled(true);
+                    b1.setEnabled(check);
                     b2 = (Button) findViewById(R.id.sun_end_button);
-                    b2.setEnabled(true);
-            }
+                    b2.setEnabled(check);
         }
-        else{
-                String checkText = checkBox.getText().toString();
-                Button b1,b2;
-                switch (checkText) {
-                    case "Mon":
-                        b1 = (Button) findViewById(R.id.mon_start_button);
-                        b1.setEnabled(false);
-                        b2 = (Button) findViewById(R.id.mon_end_button);
-                        b2.setEnabled(false);
-                    case "Tue":
-                        b1 = (Button) findViewById(R.id.tue_start_button);
-                        b1.setEnabled(false);
-                        b2 = (Button) findViewById(R.id.tue_end_button);
-                        b2.setEnabled(false);
-                    case "Wed":
-                        b1 = (Button) findViewById(R.id.wed_start_button);
-                        b1.setEnabled(false);
-                        b2 = (Button) findViewById(R.id.wed_end_button);
-                        b2.setEnabled(false);
-                    case "Thu":
-                        b1 = (Button) findViewById(R.id.thu_start_button);
-                        b1.setEnabled(false);
-                        b2 = (Button) findViewById(R.id.thu_end_button);
-                        b2.setEnabled(false);
-                    case "Fri":
-                        b1 = (Button) findViewById(R.id.fri_start_button);
-                        b1.setEnabled(false);
-                        b2 = (Button) findViewById(R.id.fri_end_button);
-                        b2.setEnabled(false);
-                    case "Sat":
-                        b1 = (Button) findViewById(R.id.sat_start_button);
-                        b1.setEnabled(false);
-                        b2 = (Button) findViewById(R.id.sat_end_button);
-                        b2.setEnabled(false);
-                    case "Sun":
-                        b1 = (Button) findViewById(R.id.sun_start_button);
-                        b1.setEnabled(false);
-                        b2 = (Button) findViewById(R.id.sun_end_button);
-                        b2.setEnabled(false);
-                }
-            }
-
     }
 
     int flag;
@@ -174,77 +202,77 @@ public class Fill_Course extends AppCompatActivity implements TimePickerFragment
                 if (flag == 0) {
                     start_time = (TextView) findViewById(R.id.mon_start_text);
                     start_time.setText(s);
-                    time1 = s;
+                    dict_StartTime.put("Mon", s);
                 } else {
                     end_time = (TextView) findViewById(R.id.mon_end_text);
                     end_time.setText(s);
-                    time2 = s;
+                    dict_EndTime.put("Mon", s);
                 }
                 break;
             case "Tuesday":
                 if (flag == 0) {
                     start_time = (TextView) findViewById(R.id.tue_start_text);
                     start_time.setText(s);
-                    time1 = s;
+                    dict_StartTime.put("Tue", s);;
                 } else {
                     end_time = (TextView) findViewById(R.id.tue_end_text);
                     end_time.setText(s);
-                    time2 = s;
+                    dict_EndTime.put("Tue", s);
                 }
                 break;
             case "Wednesday":
                 if (flag == 0) {
                     start_time = (TextView) findViewById(R.id.wed_start_text);
                     start_time.setText(s);
-                    time1 = s;
+                    dict_StartTime.put("Wed", s);
                 } else {
                     end_time = (TextView) findViewById(R.id.wed_end_text);
                     end_time.setText(s);
-                    time2 = s;
+                    dict_EndTime.put("Wed", s);
                 }
                 break;
             case "Thursday":
                 if (flag == 0) {
                     start_time = (TextView) findViewById(R.id.thu_start_text);
                     start_time.setText(s);
-                    time1 = s;
+                    dict_StartTime.put("Thu", s);
                 } else {
                     end_time = (TextView) findViewById(R.id.thu_end_text);
                     end_time.setText(s);
-                    time2 = s;
+                    dict_EndTime.put("Thu", s);
                 }
                 break;
             case "Friday":
                 if (flag == 0) {
                     start_time = (TextView) findViewById(R.id.fri_start_text);
                     start_time.setText(s);
-                    time1 = s;
+                    dict_StartTime.put("Fri", s);
                 } else {
                     end_time = (TextView) findViewById(R.id.fri_end_text);
                     end_time.setText(s);
-                    time2 = s;
+                    dict_EndTime.put("Fri", s);
                 }
                 break;
             case "Saturday":
                 if (flag == 0) {
                     start_time = (TextView) findViewById(R.id.sat_start_text);
                     start_time.setText(s);
-                    time1 = s;
+                    dict_StartTime.put("Sat", s);;
                 } else {
                     end_time = (TextView) findViewById(R.id.sat_end_text);
                     end_time.setText(s);
-                    time2 = s;
+                    dict_EndTime.put("Sat", s);
                 }
                 break;
             case "Sunday":
                 if (flag == 0) {
                     start_time = (TextView) findViewById(R.id.sun_start_text);
                     start_time.setText(s);
-                    time1 = s;
+                    dict_StartTime.put("Sun", s);
                 } else {
                     end_time = (TextView) findViewById(R.id.sun_end_text);
                     end_time.setText(s);
-                    time2 = s;
+                    dict_EndTime.put("Sun", s);
                 }
                 break;
         }

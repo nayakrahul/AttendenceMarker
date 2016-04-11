@@ -89,7 +89,7 @@
             android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:text="Mon"
-            android:id="@+id/checkBox"
+            android:id="@+id/checkBoxMon"
             android:checked="false"
             android:textSize="18dp"
             android:layout_below="@+id/textView2"
@@ -121,14 +121,14 @@
             android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:text="Tue"
-            android:id="@+id/checkBox2"
+            android:id="@+id/checkBoxTue"
             android:checked="false"
             android:textSize="18dp"
-            android:layout_below="@+id/checkBox"
+            android:layout_below="@+id/checkBoxMon"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_alignRight="@+id/checkBox"
-            android:layout_alignEnd="@+id/checkBox"
+            android:layout_alignRight="@+id/checkBoxMon"
+            android:layout_alignEnd="@+id/checkBoxMon"
             android:textColor="#474747"
             android:fontFamily="Roboto-Thin"
             android:onClick="itemClicked" />
@@ -137,10 +137,10 @@
             android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:text="Wed"
-            android:id="@+id/checkBox3"
+            android:id="@+id/checkBoxWed"
             android:checked="false"
             android:textSize="18dp"
-            android:layout_below="@+id/checkBox2"
+            android:layout_below="@+id/checkBoxTue"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_toLeftOf="@+id/mon_start_text"
@@ -153,14 +153,14 @@
             android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:text="Thu"
-            android:id="@+id/checkBox4"
+            android:id="@+id/checkBoxThu"
             android:checked="false"
             android:textSize="18dp"
-            android:layout_below="@+id/checkBox3"
+            android:layout_below="@+id/checkBoxWed"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_alignRight="@+id/checkBox3"
-            android:layout_alignEnd="@+id/checkBox3"
+            android:layout_alignRight="@+id/checkBoxWed"
+            android:layout_alignEnd="@+id/checkBoxWed"
             android:textColor="#474747"
             android:fontFamily="Roboto-Thin"
             android:onClick="itemClicked" />
@@ -169,14 +169,14 @@
             android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:text="Fri"
-            android:id="@+id/checkBox5"
+            android:id="@+id/checkBoxFri"
             android:checked="false"
             android:textSize="18dp"
-            android:layout_below="@+id/checkBox4"
+            android:layout_below="@+id/checkBoxThu"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_alignRight="@+id/checkBox4"
-            android:layout_alignEnd="@+id/checkBox4"
+            android:layout_alignRight="@+id/checkBoxThu"
+            android:layout_alignEnd="@+id/checkBoxThu"
             android:textColor="#474747"
             android:fontFamily="Roboto-Thin"
             android:onClick="itemClicked" />
@@ -185,14 +185,14 @@
             android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:text="Sat"
-            android:id="@+id/checkBox6"
+            android:id="@+id/checkBoxSat"
             android:checked="false"
             android:textSize="18dp"
-            android:layout_below="@+id/checkBox5"
+            android:layout_below="@+id/checkBoxFri"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_alignRight="@+id/checkBox5"
-            android:layout_alignEnd="@+id/checkBox5"
+            android:layout_alignRight="@+id/checkBoxFri"
+            android:layout_alignEnd="@+id/checkBoxFri"
             android:textColor="#474747"
             android:fontFamily="Roboto-Thin"
             android:onClick="itemClicked" />
@@ -201,14 +201,14 @@
             android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:text="Sun"
-            android:id="@+id/checkBox7"
+            android:id="@+id/checkBoxSun"
             android:checked="false"
             android:textSize="18dp"
-            android:layout_below="@+id/checkBox6"
+            android:layout_below="@+id/checkBoxSat"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_alignRight="@+id/checkBox6"
-            android:layout_alignEnd="@+id/checkBox6"
+            android:layout_alignRight="@+id/checkBoxSat"
+            android:layout_alignEnd="@+id/checkBoxSat"
             android:textColor="#474747"
             android:fontFamily="Roboto-Thin"
             android:onClick="itemClicked" />
@@ -221,8 +221,8 @@
             android:textSize="17dp"
             android:textAlignment="center"
             android:layout_below="@+id/textView"
-            android:layout_toRightOf="@+id/checkBox"
-            android:layout_toEndOf="@+id/checkBox"
+            android:layout_toRightOf="@+id/checkBoxMon"
+            android:layout_toEndOf="@+id/checkBoxMon"
             android:fontFamily="Roboto-Thin" />
 
         <TextView
@@ -243,10 +243,10 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="99:99"
             android:id="@+id/mon_start_text"
-            android:layout_alignBottom="@+id/checkBox"
+            android:layout_alignBottom="@+id/checkBoxMon"
             android:layout_below="@+id/textView2"
-            android:layout_toRightOf="@+id/checkBox"
-            android:layout_toEndOf="@+id/checkBox"
+            android:layout_toRightOf="@+id/checkBoxMon"
+            android:layout_toEndOf="@+id/checkBoxMon"
             android:textAlignment="center"
             android:gravity="center|center_vertical|center_horizontal"
             android:textColor="#474747" />
@@ -299,10 +299,10 @@
             android:id="@+id/tue_start_text"
             android:textAlignment="center"
             android:gravity="center|center_vertical|center_horizontal"
-            android:layout_alignTop="@+id/checkBox2"
+            android:layout_alignTop="@+id/checkBoxTue"
             android:layout_alignLeft="@+id/mon_start_text"
             android:layout_alignStart="@+id/mon_start_text"
-            android:layout_above="@+id/checkBox3"
+            android:layout_above="@+id/checkBoxWed"
             android:textColor="#474747" />
 
         <TextView
@@ -316,7 +316,7 @@
             android:layout_below="@+id/tue_start_text"
             android:layout_alignLeft="@+id/tue_start_text"
             android:layout_alignStart="@+id/tue_start_text"
-            android:layout_alignBottom="@+id/checkBox3"
+            android:layout_alignBottom="@+id/checkBoxWed"
             android:textColor="#474747" />
 
         <TextView
@@ -327,10 +327,10 @@
             android:id="@+id/thu_start_text"
             android:textAlignment="center"
             android:gravity="center|center_vertical|center_horizontal"
-            android:layout_alignTop="@+id/checkBox4"
+            android:layout_alignTop="@+id/checkBoxThu"
             android:layout_alignLeft="@+id/wed_start_text"
             android:layout_alignStart="@+id/wed_start_text"
-            android:layout_above="@+id/checkBox5"
+            android:layout_above="@+id/checkBoxFri"
             android:textColor="#474747" />
 
         <TextView
@@ -344,7 +344,7 @@
             android:layout_below="@+id/thu_start_text"
             android:layout_alignLeft="@+id/thu_start_text"
             android:layout_alignStart="@+id/thu_start_text"
-            android:layout_above="@+id/checkBox6"
+            android:layout_above="@+id/checkBoxSat"
             android:textColor="#474747" />
 
         <TextView
@@ -355,10 +355,10 @@
             android:id="@+id/sat_start_text"
             android:textAlignment="center"
             android:gravity="center|center_vertical|center_horizontal"
-            android:layout_alignTop="@+id/checkBox6"
+            android:layout_alignTop="@+id/checkBoxSat"
             android:layout_alignLeft="@+id/fri_start_text"
             android:layout_alignStart="@+id/fri_start_text"
-            android:layout_above="@+id/checkBox7"
+            android:layout_above="@+id/checkBoxSun"
             android:textColor="#474747" />
 
         <TextView
@@ -372,7 +372,7 @@
             android:layout_below="@+id/sat_start_text"
             android:layout_alignLeft="@+id/sat_start_text"
             android:layout_alignStart="@+id/sat_start_text"
-            android:layout_alignBottom="@+id/checkBox7"
+            android:layout_alignBottom="@+id/checkBoxSun"
             android:textColor="#474747" />
 
         <TextView

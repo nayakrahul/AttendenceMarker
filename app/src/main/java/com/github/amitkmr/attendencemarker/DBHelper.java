@@ -30,7 +30,7 @@ public class DBHelper extends SQLiteOpenHelper {
         // TODO Auto-generated method stub
         db.execSQL(
                 "create table course_info " +
-                        "(id text primary key, name text, start_hour int, start_minute int, end_hour int, end_minute int)"
+                        "(id text primary key, name text, day text, start_hour int, start_minute int, end_hour int, end_minute int)"
         );
     }
 
@@ -41,12 +41,13 @@ public class DBHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public boolean insertCourse  (String id, String name, int start_hr, int start_min, int end_hr, int end_min)
+    public boolean insertCourse  (String id, String name, String day, int start_hr, int start_min, int end_hr, int end_min)
     {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("id", id);
         contentValues.put("name", name);
+        contentValues.put("day", day);
         contentValues.put("start_hour", start_hr);
         contentValues.put("start_minute", start_min);
         contentValues.put("end_hour", end_hr);
