@@ -21,7 +21,8 @@
         <activity android:name=".Course"></activity>
         <activity android:name=".Fill_Course"></activity>
         <activity android:name=".Attendance"></activity>
-        <activity android:name="AboutUs"></activity>
+        <activity android:name=".AboutUs"></activity>
+        <activity android:name=".AttendanceDetails"></activity>
 
     </application>
 

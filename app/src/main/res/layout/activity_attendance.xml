@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scrollView2"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    tools:context=".DisplayContact" >
+
+<RelativeLayout
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/course_detail"
     android:weightSum="1">
 
     <TextView
@@ -10,7 +18,7 @@
         android:gravity="center"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:id="@+id/courseName"
-        android:padding="20dp"
+        android:padding="15dp"
         android:background="@drawable/course_border"
         android:textSize="@dimen/add_course_text_size"
         android:text="Course Name"
@@ -58,7 +66,7 @@
         android:textAlignment="center"
         android:background="#9BDDFF"
         android:nestedScrollingEnabled="false"
-        android:onClick="onClick"
+        android:onClick="onClickA"
         android:fontFamily="Roboto-Thin"
         android:textSize="20dp"
         android:textColor="#545454"
@@ -71,7 +79,7 @@
         android:gravity="center"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:id="@+id/schedule"
-        android:padding="20dp"
+        android:padding="5dp"
         android:background="@drawable/course_border"
         android:textSize="@dimen/add_course_text_size"
         android:text="Schedule"
@@ -80,3 +88,4 @@
         android:layout_alignParentStart="true"
         android:layout_marginTop="33dp" />
 </RelativeLayout>
+    </ScrollView>

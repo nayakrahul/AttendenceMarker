@@ -84,7 +84,7 @@ public class Course extends AppCompatActivity {
         }
     }
 
-    public void onClick(View v) {
+    public void onClickB (View v) {
         Intent nextScreen = new Intent(getApplicationContext(), Fill_Course.class);
         startActivity(nextScreen);
     }

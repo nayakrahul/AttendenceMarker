@@ -49,8 +49,5 @@ public class AboutUs extends AppCompatActivity {
         }
     }
 
-    public void onClick(View v) {
-        Intent nextScreen = new Intent(getApplicationContext(), Fill_Course.class);
-        startActivity(nextScreen);
-    }
+
 }

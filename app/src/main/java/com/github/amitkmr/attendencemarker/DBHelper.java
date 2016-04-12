@@ -17,6 +17,11 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String COURSES_TABLE_NAME = "course_info";
     public static final String COURSES_COLUMN_ID = "id";
     public static final String COURSES_COLUMN_NAME = "name";
+    public static final String COURSES_COLUMN_DAY = "day";
+    public static final String COURSES_COLUMN_START_HR = "start_hour";
+    public static final String COURSES_COLUMN_START_MIN = "start_minute";
+    public static final String COURSES_COLUMN_END_HR = "end_hour";
+    public static final String COURSES_COLUMN_END_MIN = "end_minute";
     private HashMap hp;
 
 
@@ -56,7 +61,7 @@ public class DBHelper extends SQLiteOpenHelper {
         return true;
     }
 
-    public String getData(String id){
+    public String getCoursesColumnName(String id){
         String data;
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor res =  db.rawQuery( "select * from course_info where id = ?", new String[]{id});
@@ -65,6 +70,66 @@ public class DBHelper extends SQLiteOpenHelper {
         return data;
     }
 
+    public ArrayList<String> getCoursesColumnDay(String id){
+        ArrayList<String> array_list = new ArrayList<String>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor res =  db.rawQuery( "select * from course_info where id = ?", new String[]{id});
+        res.moveToFirst();
+        while(res.isAfterLast() == false){
+            array_list.add(res.getString(res.getColumnIndex(COURSES_COLUMN_DAY)));
+            res.moveToNext();
+        }
+        return array_list;
+
+    }
+
+    public ArrayList<Integer> getCoursesColumnStartHr(String id){
+        ArrayList<Integer> array_list = new ArrayList<Integer>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor res =  db.rawQuery( "select * from course_info where id = ?", new String[]{id});
+        res.moveToFirst();
+        while(res.isAfterLast() == false){
+            array_list.add(res.getInt(res.getColumnIndex(COURSES_COLUMN_START_HR)));
+            res.moveToNext();
+        }
+        return array_list;
+    }
+
+    public ArrayList<Integer> getCoursesColumnStartMin(String id){
+        ArrayList<Integer> array_list = new ArrayList<Integer>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor res =  db.rawQuery( "select * from course_info where id = ?", new String[]{id});
+        res.moveToFirst();
+        while(res.isAfterLast() == false){
+            array_list.add(res.getInt(res.getColumnIndex(COURSES_COLUMN_START_MIN)));
+            res.moveToNext();
+        }
+        return array_list;
+    }
+
+    public ArrayList<Integer> getCoursesColumnEndHr(String id){
+        ArrayList<Integer> array_list = new ArrayList<Integer>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor res =  db.rawQuery( "select * from course_info where id = ?", new String[]{id});
+        res.moveToFirst();
+        while(res.isAfterLast() == false){
+            array_list.add(res.getInt(res.getColumnIndex(COURSES_COLUMN_END_HR)));
+            res.moveToNext();
+        }
+        return array_list;
+    }
+
+    public ArrayList<Integer> getCoursesColumnEndMin(String id){
+        ArrayList<Integer> array_list = new ArrayList<Integer>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor res =  db.rawQuery( "select * from course_info where id = ?", new String[]{id});
+        res.moveToFirst();
+        while(res.isAfterLast() == false){
+            array_list.add(res.getInt(res.getColumnIndex(COURSES_COLUMN_END_MIN)));
+            res.moveToNext();
+        }
+        return array_list;
+    }
 //    public int numberOfRows(){
 //        SQLiteDatabase db = this.getReadableDatabase();
 //        int numRows = (int) DatabaseUtils.queryNumEntries(db, COURSES_TABLE_NAME);
