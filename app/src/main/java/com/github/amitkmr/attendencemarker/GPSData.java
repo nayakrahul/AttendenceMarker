@@ -78,6 +78,7 @@ public class GPSData extends DialogFragment implements LocationListener{
         latitude  = location.getLatitude()+"";
         longitude = location.getLongitude()+"";
 
+        
     }
 
     @Override
