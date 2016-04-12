@@ -1,29 +1,21 @@
 package com.github.amitkmr.attendencemarker;
 
 
-import android.app.ActionBar;
-import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import java.sql.Time;
-import java.util.Dictionary;
-import java.util.Hashtable;
-import java.util.Map;
-import java.util.HashMap;
 
 /**
  * Created by RAHUL on 03-04-2016.
  */
-public class Fill_Course extends AppCompatActivity implements TimePickerFragment.onSomeEventListener {
+public class Fill_Course extends AppCompatActivity implements TimePickerFragment.onSomeEventListener,GPSData.onSyncCoordinate {
     TextView id;
     TextView name;
     private DBHelper mydb ;
@@ -33,8 +25,8 @@ public class Fill_Course extends AppCompatActivity implements TimePickerFragment
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fill_course);
 
-        id = (TextView) findViewById(R.id.editId);
-        name = (TextView) findViewById(R.id.editName);
+        id = (TextView) findViewById(R.id.course_no);
+        name = (TextView) findViewById(R.id.course_name);
         mydb = new DBHelper(this);
 
         android.support.v7.app.ActionBar actionBar = getSupportActionBar();
@@ -277,6 +269,18 @@ public class Fill_Course extends AppCompatActivity implements TimePickerFragment
                 break;
         }
     }
+
+    public void syncCoordinate(String s1, String s2) {
+
+
+        TextView latitudeText = (TextView) findViewById(R.id.latitude_text);
+        latitudeText.setText(s1);
+
+        TextView longitudeText = (TextView) findViewById(R.id.longitude_text);
+        longitudeText.setText(s2);
+
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -287,5 +291,10 @@ public class Fill_Course extends AppCompatActivity implements TimePickerFragment
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+    public void onClickSyncCoordinate(View v)   {
+        FragmentManager fm = getFragmentManager();
+        GPSData dialogFragment = new GPSData ();
+        dialogFragment.show(fm, "Sample Fragment");
     }
 }

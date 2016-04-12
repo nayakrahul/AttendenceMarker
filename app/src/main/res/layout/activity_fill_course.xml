@@ -19,10 +19,10 @@
             android:layout_height="wrap_content"
             android:text="Course No."
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:layout_alignBottom="@+id/editId"
+            android:layout_alignBottom="@+id/course_no"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_toStartOf="@+id/editId"
+            android:layout_toStartOf="@+id/course_no"
             android:layout_alignRight="@+id/textView5"
             android:layout_alignEnd="@+id/textView5"
             android:fontFamily="Roboto-Thin"
@@ -50,7 +50,7 @@
             android:layout_height="wrap_content"
             android:text="Course Name"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:layout_alignBottom="@+id/editName"
+            android:layout_alignBottom="@+id/course_name"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:fontFamily="Roboto-Thin"
@@ -60,7 +60,7 @@
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/editId"
+            android:id="@+id/course_no"
             android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
@@ -72,14 +72,14 @@
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/editName"
-            android:layout_below="@+id/editId"
-            android:layout_alignRight="@+id/editId"
-            android:layout_alignEnd="@+id/editId"
+            android:id="@+id/course_name"
+            android:layout_below="@+id/course_no"
+            android:layout_alignRight="@+id/course_no"
+            android:layout_alignEnd="@+id/course_no"
             android:layout_toEndOf="@+id/textView1"
             android:fontFamily="Roboto-Thin"
-            android:layout_alignLeft="@+id/editId"
-            android:layout_alignStart="@+id/editId" />
+            android:layout_alignLeft="@+id/course_no"
+            android:layout_alignStart="@+id/course_no" />
 
         <Button
             android:layout_width="match_parent"
@@ -94,7 +94,8 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:textSize="18dp"
-            android:textColor="#4b4b4b" />
+            android:textColor="#4b4b4b"
+            android:onClick="onClickSyncCoordinate" />
 
         <CheckBox
             android:layout_width="wrap_content"
@@ -572,8 +573,8 @@
             android:id="@+id/fri_end_button"
             android:drawableRight="@drawable/ic_access_time_24dp"
             android:layout_below="@+id/thu_end_text"
-            android:layout_alignRight="@+id/editName"
-            android:layout_alignEnd="@+id/editName"
+            android:layout_alignRight="@+id/course_name"
+            android:layout_alignEnd="@+id/course_name"
             android:onClick="onClick_end_time"
             android:enabled="false"/>
 
@@ -627,6 +628,28 @@
             android:layout_toEndOf="@+id/sun_end_text"
             android:drawableRight="@drawable/ic_access_time_24dp"
             android:enabled="false"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Latitude Not Set"
+            android:id="@+id/latitude_text"
+            android:paddingTop="20dp"
+            android:layout_below="@+id/checkBoxSun"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Longitude Not Set"
+            android:id="@+id/longitude_text"
+            android:paddingTop="20dp"
+            android:layout_below="@+id/sun_end_text"
+            android:layout_alignRight="@+id/textView3"
+            android:layout_alignEnd="@+id/textView3" />
 
 
     </RelativeLayout>
