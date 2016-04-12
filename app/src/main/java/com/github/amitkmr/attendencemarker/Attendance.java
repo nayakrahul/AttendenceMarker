@@ -29,7 +29,13 @@ public class Attendance extends AppCompatActivity {
         mydb = new DBHelper(this);
 
         String data;
+
         data = mydb.getCoursesColumnName(id);
+
+
+
+        // set the course Name
+
         desc = (TextView) findViewById(R.id.courseName);
         desc.setText(data);
 
@@ -93,7 +99,9 @@ public class Attendance extends AppCompatActivity {
     }
 
 
-    public void onClickA (View v) {
+
+    public void onClickAttendanceDetails(View v) {
+
         Intent nextScreen = new Intent(getApplicationContext(), AttendanceDetails.class);
         startActivity(nextScreen);
     }
