@@ -76,6 +76,19 @@ public class Attendance extends AppCompatActivity {
             temp = textView;
         }
 
+        // get the latitude and longitude from the table
+
+        data = mydb.getCourseLocationLatitude(id);
+        TextView showLatitude = (TextView)findViewById(R.id.showLatitude);
+        showLatitude.setText(data);
+
+        data = mydb.getCourseLocationLongitude(id);
+        TextView showLongitude = (TextView)findViewById(R.id.showLongitude);
+        showLongitude.setText(data);
+
+
+
+
         // return to to the home screen
         android.support.v7.app.ActionBar actionBar = getSupportActionBar();
         actionBar.setHomeButtonEnabled(true);

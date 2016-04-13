@@ -25,20 +25,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-<<<<<<< HEAD
         <activity android:name=".Course"></activity>
         <activity android:name=".Fill_Course"></activity>
         <activity android:name=".Attendance"></activity>
         <activity android:name=".AboutUs"></activity>
         <activity android:name=".AttendanceDetails"></activity>
-=======
-        <activity android:name=".Course" />
-        <activity android:name=".Fill_Course" />
-        <activity android:name=".Attendance" />
-        <activity android:name=".AboutUs" />
-        <activity android:name=".AttendanceDetails" />
-
->>>>>>> origin/rahul-branch
 
     </application>
 
