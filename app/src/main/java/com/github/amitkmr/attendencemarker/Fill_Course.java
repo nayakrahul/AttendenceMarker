@@ -123,6 +123,14 @@ public class Fill_Course extends AppCompatActivity implements TimePickerFragment
                         Integer.parseInt(parts1[0]), Integer.parseInt(parts1[1]),
                         Integer.parseInt(parts2[0]), Integer.parseInt(parts2[1]));
             }
+
+            TextView latitudeText = (TextView) findViewById(R.id.latitude_text);
+            TextView longitudeText = (TextView) findViewById(R.id.longitude_text);
+
+            mydb.insertCoordinates(id.getText().toString(), name.getText().toString(),
+                    latitudeText.getText().toString(), longitudeText.getText().toString());
+
+
         Intent nextScreen = new Intent(getApplicationContext(), Course.class);
         startActivity(nextScreen);
     }
@@ -144,36 +152,43 @@ public class Fill_Course extends AppCompatActivity implements TimePickerFragment
                     b1.setEnabled(check);
                     b2 = (Button) findViewById(R.id.mon_end_button);
                     b2.setEnabled(check);
+                    break;
                 case "Tue":
                     b1 = (Button) findViewById(R.id.tue_start_button);
                     b1.setEnabled(check);
                     b2 = (Button) findViewById(R.id.tue_end_button);
                     b2.setEnabled(check);
+                    break;
                 case "Wed":
                     b1 = (Button) findViewById(R.id.wed_start_button);
                     b1.setEnabled(check);
                     b2 = (Button) findViewById(R.id.wed_end_button);
                     b2.setEnabled(check);
+                    break;
                 case "Thu":
                     b1 = (Button) findViewById(R.id.thu_start_button);
                     b1.setEnabled(check);
                     b2 = (Button) findViewById(R.id.thu_end_button);
                     b2.setEnabled(check);
+                    break;
                 case "Fri":
                     b1 = (Button) findViewById(R.id.fri_start_button);
                     b1.setEnabled(check);
                     b2 = (Button) findViewById(R.id.fri_end_button);
                     b2.setEnabled(check);
+                    break;
                 case "Sat":
                     b1 = (Button) findViewById(R.id.sat_start_button);
                     b1.setEnabled(check);
                     b2 = (Button) findViewById(R.id.sat_end_button);
                     b2.setEnabled(check);
+                    break;
                 case "Sun":
                     b1 = (Button) findViewById(R.id.sun_start_button);
                     b1.setEnabled(check);
                     b2 = (Button) findViewById(R.id.sun_end_button);
                     b2.setEnabled(check);
+                    break;
         }
     }
 

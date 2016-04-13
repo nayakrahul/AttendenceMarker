@@ -22,6 +22,9 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String COURSES_COLUMN_START_MIN = "start_minute";
     public static final String COURSES_COLUMN_END_HR = "end_hour";
     public static final String COURSES_COLUMN_END_MIN = "end_minute";
+    public static final String COURSES_COLUMN_LATITUDE = "latitude";
+    public static final String COURSES_COLUMN_LONGITUDE = "longitude";
+
     private HashMap hp;
 
 
@@ -37,12 +40,19 @@ public class DBHelper extends SQLiteOpenHelper {
                 "create table course_info " +
                         "(id text, name text, day text, start_hour int, start_minute int, end_hour int, end_minute int)"
         );
+
+
+        db.execSQL(
+                "create table course_location_info " +
+                        "(id text, name text, latitude text, longitude text)"
+        );
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // TODO Auto-generated method stub
         db.execSQL("DROP TABLE IF EXISTS course_info");
+        db.execSQL("DROP TABLE IF EXISTS course_location_info");
         onCreate(db);
     }
 
@@ -61,12 +71,43 @@ public class DBHelper extends SQLiteOpenHelper {
         return true;
     }
 
+
+    public boolean insertCoordinates (String id, String name, String latitude, String longitude)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("id", id);
+        contentValues.put("name", name);
+        contentValues.put("latitude", latitude);
+        contentValues.put("longitude", longitude);
+        db.insert("course_location_info", null, contentValues);
+        return true;
+    }
+
     public String getCoursesColumnName(String id){
         String data;
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor res =  db.rawQuery( "select * from course_info where id = ?", new String[]{id});
         res.moveToFirst();
         data = res.getString(res.getColumnIndex(COURSES_COLUMN_NAME));
+        return data;
+    }
+
+    public String getCourseLocationLatitude(String id){
+        String data;
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor res =  db.rawQuery( "select * from course_location_info where id = ?", new String[]{id});
+        res.moveToFirst();
+        data = res.getString(res.getColumnIndex(COURSES_COLUMN_LATITUDE));
+        return data;
+    }
+
+    public String getCourseLocationLongitude(String id){
+        String data;
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor res =  db.rawQuery( "select * from course_location_info where id = ?", new String[]{id});
+        res.moveToFirst();
+        data = res.getString(res.getColumnIndex(COURSES_COLUMN_LONGITUDE));
         return data;
     }
 
