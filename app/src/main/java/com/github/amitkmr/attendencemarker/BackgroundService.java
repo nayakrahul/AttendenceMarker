@@ -3,29 +3,47 @@ import android.app.AlarmManager;
 import android.app.Notification;
 import android.app.PendingIntent;
 import android.app.Service;
+import android.content.Context;
 import android.content.Intent;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Binder;
+import android.os.Bundle;
 import android.os.IBinder;
 import android.support.v7.app.NotificationCompat;
 import android.util.Log;
+import android.view.View;
+import android.widget.TextView;
 
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Collections;
+import android.widget.Toast;
+import java.util.Timer;
 
 /**
  * Created by RAHUL on 14-04-2016.
  */
-public class BackgroundService extends Service {
+public class BackgroundService extends Service implements LocationListener {
     int mStartMode;       // indicates how to behave if the service is killed
     IBinder mBinder;      // interface for clients that bind
     boolean mAllowRebind; // indicates whether onRebind should be used
     private DBHelper mydb ;
 
-    AlarmManager alarmManager;
-    private PendingIntent pendingIntent;
+
     private static BackgroundService inst;
+    // Variable defined for the day schdule
+    ArrayList<String> daySchedule = new ArrayList<String>();
+
+    // the fetch of cuurent coordinates from the GPS data class
+    protected LocationManager locationManager;
+    protected LocationListener locationListener;
+    String latitude="";
+    String longitude="";
+
 
     public static BackgroundService instance() {
         return inst;
@@ -40,11 +58,17 @@ public class BackgroundService extends Service {
         // The service is starting, due to a call to startService()
         runForeground();
         //getStarted();
+        // GPS DATA \//////////////////////////////////////
+        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
+
+
+
+
+
         mydb = new DBHelper(this);
         Calendar calendar = Calendar.getInstance();
         int day = calendar.get(Calendar.DAY_OF_WEEK);
-        ArrayList<String> daySchedule = new ArrayList<String>();
-        alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
 
         switch (day) {
             case Calendar.SUNDAY:
@@ -90,6 +114,8 @@ public class BackgroundService extends Service {
                 break;
 
         }
+
+        Log.d("Background Service", "GPS data");
         return mStartMode;
     }
 
@@ -112,9 +138,6 @@ public class BackgroundService extends Service {
         Calendar calendar = Calendar.getInstance();
         calendar.set(Calendar.HOUR_OF_DAY, 19);
         calendar.set(Calendar.MINUTE, 0);
-        Intent myIntent = new Intent(BackgroundService.this, AlarmReceiver.class);
-        pendingIntent = PendingIntent.getBroadcast(BackgroundService.this, 0, myIntent, 0);
-        alarmManager.set(AlarmManager.RTC, calendar.getTimeInMillis(), pendingIntent);
     }
 
     @Override
@@ -135,5 +158,28 @@ public class BackgroundService extends Service {
     @Override
     public void onDestroy() {
         // The service is no longer used and is being destroyed
+    }
+
+    @Override
+    public void onLocationChanged(Location location) {
+
+        latitude  = location.getLatitude()+"";
+        longitude = location.getLongitude()+"";
+        Toast.makeText(this, "latitude:"+latitude, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onProviderDisabled(String provider) {
+        Log.d("Latitude", "disable");
+    }
+
+    @Override
+    public void onProviderEnabled(String provider) {
+        Log.d("Latitude","enable");
+    }
+
+    @Override
+    public void onStatusChanged(String provider, int status, Bundle extras) {
+        Log.d("Latitude","status");
     }
 }

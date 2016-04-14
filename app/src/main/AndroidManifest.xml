@@ -32,7 +32,6 @@
         <activity android:name=".AboutUs"></activity>
         <activity android:name=".AttendanceDetails"></activity>
         <service android:name=".BackgroundService" />
-        <receiver android:name=".AlarmReceiver" />
 
     </application>
 
