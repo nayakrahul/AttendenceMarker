@@ -10,6 +10,7 @@ import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteDatabase;
 
+
 public class DBHelper extends SQLiteOpenHelper {
 
 //    SQLiteDatabase mydatabase = openOrCreateDatabase("Courses",MODE_PRIVATE,null);
@@ -171,24 +172,39 @@ public class DBHelper extends SQLiteOpenHelper {
         }
         return array_list;
     }
+
+    public ArrayList<String> getTimeByDay (String day){
+        ArrayList<String> array_list = new ArrayList<String>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor res =  db.rawQuery("select * from course_info where id = ?", new String[]{day});
+        res.moveToFirst();
+        while(res.isAfterLast() == false){
+            int start_hr = res.getInt(res.getColumnIndex(COURSES_COLUMN_START_HR));
+            int start_min = res.getInt(res.getColumnIndex(COURSES_COLUMN_START_MIN));
+            int end_hr = res.getInt(res.getColumnIndex(COURSES_COLUMN_END_HR));
+            int end_min = res.getInt(res.getColumnIndex(COURSES_COLUMN_END_MIN));
+            array_list.add(String.format("%02d", start_hr)+":"+String.format("%02d", start_min)+"-"
+                            +String.format("%02d", end_hr)+":"+String.format("%02d", end_min));
+            res.moveToNext();
+        }
+        return array_list;
+    }
 //    public int numberOfRows(){
 //        SQLiteDatabase db = this.getReadableDatabase();
 //        int numRows = (int) DatabaseUtils.queryNumEntries(db, COURSES_TABLE_NAME);
 //        return numRows;
 //    }
 
-//    public boolean updateContact (String id, String name)
-//    {
-//        SQLiteDatabase db = this.getWritableDatabase();
-//        ContentValues contentValues = new ContentValues();
-//        contentValues.put("name", name);
-//        contentValues.put("phone", phone);
-//        contentValues.put("email", email);
-//        contentValues.put("street", street);
-//        contentValues.put("place", place);
-//        db.update("contacts", contentValues, "id = ? ", new String[] { Integer.toString(id) } );
-//        return true;
-//    }
+    public boolean updateCoordinates (String id, String name, String latitude, String longitude)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("name", name);
+        contentValues.put("latitude", latitude);
+        contentValues.put("longitude", longitude);
+        db.update("course_location_info", contentValues, "id = ? ", new String[] {id} );
+        return true;
+    }
 
     public Integer deleteContact (String id)
     {

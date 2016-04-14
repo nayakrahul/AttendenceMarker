@@ -8,4 +8,7 @@
     <string name="aboutUsContent">This is attendence marker app which tracks your attendence using your phone location. Please give access to GPS data. For Any Query Contact on : ssamitkmr@gmail.com, rahulnk521@gmail.com</string>
     <string name="monText">Mon</string>
     <string name="title_activity_maps">Map</string>
+    <string name="ticker_text">Attendance Marker running</string>
+    <string name="notification_title">Attendance Marker</string>
+    <string name="notification_message">Running in background</string>
 </resources>

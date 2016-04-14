@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
@@ -51,11 +52,14 @@ public class GPSData extends DialogFragment implements LocationListener{
 
     final String LOG_TAG = "myLogs";
     String latitude, longitude;
+    private ProgressBar spinner;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.activity_gps_data, container, false);
 
         txtLat = (TextView)rootView.findViewById(R.id.gps_coordinates);
+        spinner = (ProgressBar)rootView.findViewById(R.id.progressBar1);
+        spinner.setVisibility(View.VISIBLE);
 
         locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
@@ -73,12 +77,13 @@ public class GPSData extends DialogFragment implements LocationListener{
     }
     @Override
     public void onLocationChanged(Location location) {
+        spinner.setVisibility(View.GONE);
         txtLat = (TextView) rootView.findViewById(R.id.gps_coordinates);
-        txtLat.setText("Latitude:" + location.getLatitude() + ", Longitude:" + location.getLongitude());
+        txtLat.setText("Latitude:" + location.getLatitude() + "\nLongitude:" + location.getLongitude());
         latitude  = location.getLatitude()+"";
         longitude = location.getLongitude()+"";
 
-        
+
     }
 
     @Override

@@ -1,23 +1,28 @@
 package com.github.amitkmr.attendencemarker;
 
+import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.TypedValue;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
 /**
  * Created by RAHUL on 04-04-2016.
  */
-public class Attendance extends AppCompatActivity {
+public class Attendance extends AppCompatActivity implements GPSData.onSyncCoordinate {
     private DBHelper mydb ;
     private TextView desc;
+    private String id;
+    private String data;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,17 +30,11 @@ public class Attendance extends AppCompatActivity {
         setContentView(R.layout.activity_attendance);
 
         Intent intent = getIntent();
-        String id = intent.getExtras().getString("id");
+        id = intent.getExtras().getString("id");
         mydb = new DBHelper(this);
 
-        String data;
-
         data = mydb.getCoursesColumnName(id);
-
-
-
         // set the course Name
-
         desc = (TextView) findViewById(R.id.courseName);
         desc.setText(data);
 
@@ -55,7 +54,6 @@ public class Attendance extends AppCompatActivity {
         end_min = mydb.getCoursesColumnEndMin(id);
 
         int N = day.size();
-        int below = R.id.schedule;
         TextView temp = new TextView(this);
         temp = (TextView) findViewById(R.id.schedule);
         RelativeLayout relativeLayout = (RelativeLayout) findViewById(R.id.course_detail);
@@ -77,17 +75,7 @@ public class Attendance extends AppCompatActivity {
         }
 
         // get the latitude and longitude from the table
-
-        data = mydb.getCourseLocationLatitude(id);
-        TextView showLatitude = (TextView)findViewById(R.id.showLatitude);
-        showLatitude.setText(data);
-
-        data = mydb.getCourseLocationLongitude(id);
-        TextView showLongitude = (TextView)findViewById(R.id.showLongitude);
-        showLongitude.setText(data);
-
-
-
+        CoordinatesSetOrNot(id);
 
         // return to to the home screen
         android.support.v7.app.ActionBar actionBar = getSupportActionBar();
@@ -98,6 +86,39 @@ public class Attendance extends AppCompatActivity {
         setTitle(id);
     }
 
+    public void CoordinatesSetOrNot(String id){
+        String data1, data2;
+        data1 = mydb.getCourseLocationLatitude(id);
+        TextView showLatitude = (TextView)findViewById(R.id.showLatitude);
+        showLatitude.setText(data1);
+
+        data2 = mydb.getCourseLocationLongitude(id);
+        TextView showLongitude = (TextView)findViewById(R.id.showLongitude);
+        showLongitude.setText(data2);
+
+        if(data1.matches("Latitude Not Set") || data2.matches("Longitude Not Set")){
+            Button btn=(Button)findViewById(R.id.coordinate_check);
+            btn.setText("COORDINATES NOT SYNCED ! SYNC NOW");
+        }
+
+    }
+
+    public void onClickSyncCoordinate(View v)   {
+        FragmentManager fm = getFragmentManager();
+        GPSData dialogFragment = new GPSData ();
+        dialogFragment.show(fm, "Sample Fragment");
+    }
+
+    public void syncCoordinate(String s1, String s2) {
+        if(mydb.updateCoordinates(id, data, s1, s2)){
+            Toast.makeText(this, "Coordinates Updated", Toast.LENGTH_SHORT).show();
+        }
+        else {
+            Toast.makeText(this, "Failed", Toast.LENGTH_SHORT).show();
+        }
+        Button btn=(Button)findViewById(R.id.coordinate_check);
+        btn.setText("EDIT COORDINATES OF VENUE");
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

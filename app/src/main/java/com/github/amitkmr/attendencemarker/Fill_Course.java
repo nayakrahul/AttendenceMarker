@@ -10,7 +10,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * Created by RAHUL on 03-04-2016.
@@ -37,6 +39,19 @@ public class Fill_Course extends AppCompatActivity implements TimePickerFragment
     CheckBox checkBox_mon, checkBox_tue, checkBox_wed, checkBox_thu, checkBox_fri, checkBox_sat, checkBox_sun;
     public void onClick(View v)
     {
+        EditText courseNo = (EditText) findViewById(R.id.course_no);
+        EditText courseName = (EditText) findViewById(R.id.course_name);
+        String course_no = courseNo.getText().toString();
+        String course_name = courseName.getText().toString();
+        if(course_no.matches("")){
+            Toast.makeText(this, "You did not enter course no.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        else if(course_name.matches("")){
+            Toast.makeText(this, "You did not enter course name", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        else {
             checkBox_mon = (CheckBox) findViewById(R.id.checkBoxMon);
             checkBox_tue = (CheckBox) findViewById(R.id.checkBoxTue);
             checkBox_wed = (CheckBox) findViewById(R.id.checkBoxWed);
@@ -46,7 +61,7 @@ public class Fill_Course extends AppCompatActivity implements TimePickerFragment
             checkBox_sun = (CheckBox) findViewById(R.id.checkBoxSun);
             String time1, time2;
             TextView timeText1, timeText2;
-            if(checkBox_mon.isChecked()){
+            if (checkBox_mon.isChecked()) {
                 timeText1 = (TextView) findViewById(R.id.mon_start_text);
                 time1 = timeText1.getText().toString();
                 timeText2 = (TextView) findViewById(R.id.mon_end_text);
@@ -57,7 +72,7 @@ public class Fill_Course extends AppCompatActivity implements TimePickerFragment
                         Integer.parseInt(parts1[0]), Integer.parseInt(parts1[1]),
                         Integer.parseInt(parts2[0]), Integer.parseInt(parts2[1]));
             }
-            if(checkBox_tue.isChecked()){
+            if (checkBox_tue.isChecked()) {
                 timeText1 = (TextView) findViewById(R.id.tue_start_text);
                 time1 = timeText1.getText().toString();
                 timeText2 = (TextView) findViewById(R.id.tue_end_text);
@@ -68,7 +83,7 @@ public class Fill_Course extends AppCompatActivity implements TimePickerFragment
                         Integer.parseInt(parts1[0]), Integer.parseInt(parts1[1]),
                         Integer.parseInt(parts2[0]), Integer.parseInt(parts2[1]));
             }
-            if(checkBox_wed.isChecked()){
+            if (checkBox_wed.isChecked()) {
                 timeText1 = (TextView) findViewById(R.id.wed_start_text);
                 time1 = timeText1.getText().toString();
                 timeText2 = (TextView) findViewById(R.id.wed_end_text);
@@ -79,7 +94,7 @@ public class Fill_Course extends AppCompatActivity implements TimePickerFragment
                         Integer.parseInt(parts1[0]), Integer.parseInt(parts1[1]),
                         Integer.parseInt(parts2[0]), Integer.parseInt(parts2[1]));
             }
-            if(checkBox_thu.isChecked()){
+            if (checkBox_thu.isChecked()) {
                 timeText1 = (TextView) findViewById(R.id.thu_start_text);
                 time1 = timeText1.getText().toString();
                 timeText2 = (TextView) findViewById(R.id.thu_end_text);
@@ -90,7 +105,7 @@ public class Fill_Course extends AppCompatActivity implements TimePickerFragment
                         Integer.parseInt(parts1[0]), Integer.parseInt(parts1[1]),
                         Integer.parseInt(parts2[0]), Integer.parseInt(parts2[1]));
             }
-            if(checkBox_fri.isChecked()){
+            if (checkBox_fri.isChecked()) {
                 timeText1 = (TextView) findViewById(R.id.fri_start_text);
                 time1 = timeText1.getText().toString();
                 timeText2 = (TextView) findViewById(R.id.fri_end_text);
@@ -101,7 +116,7 @@ public class Fill_Course extends AppCompatActivity implements TimePickerFragment
                         Integer.parseInt(parts1[0]), Integer.parseInt(parts1[1]),
                         Integer.parseInt(parts2[0]), Integer.parseInt(parts2[1]));
             }
-            if(checkBox_sat.isChecked()){
+            if (checkBox_sat.isChecked()) {
                 timeText1 = (TextView) findViewById(R.id.sat_start_text);
                 time1 = timeText1.getText().toString();
                 timeText2 = (TextView) findViewById(R.id.sat_end_text);
@@ -112,7 +127,7 @@ public class Fill_Course extends AppCompatActivity implements TimePickerFragment
                         Integer.parseInt(parts1[0]), Integer.parseInt(parts1[1]),
                         Integer.parseInt(parts2[0]), Integer.parseInt(parts2[1]));
             }
-            if(checkBox_sun.isChecked()){
+            if (checkBox_sun.isChecked()) {
                 timeText1 = (TextView) findViewById(R.id.sun_start_text);
                 time1 = timeText1.getText().toString();
                 timeText2 = (TextView) findViewById(R.id.sun_end_text);
@@ -127,12 +142,17 @@ public class Fill_Course extends AppCompatActivity implements TimePickerFragment
             TextView latitudeText = (TextView) findViewById(R.id.latitude_text);
             TextView longitudeText = (TextView) findViewById(R.id.longitude_text);
 
-            mydb.insertCoordinates(id.getText().toString(), name.getText().toString(),
-                    latitudeText.getText().toString(), longitudeText.getText().toString());
+            if(mydb.insertCoordinates(id.getText().toString(), name.getText().toString(),
+                    latitudeText.getText().toString(), longitudeText.getText().toString())) {
+                Toast.makeText(this, "Course Saved", Toast.LENGTH_SHORT).show();
+            }
+            else {
+                Toast.makeText(this, "Failed", Toast.LENGTH_SHORT).show();
+            }
 
-
-        Intent nextScreen = new Intent(getApplicationContext(), Course.class);
-        startActivity(nextScreen);
+            Intent nextScreen = new Intent(getApplicationContext(), Course.class);
+            startActivity(nextScreen);
+        }
     }
 
     //on playing with checkboxes
