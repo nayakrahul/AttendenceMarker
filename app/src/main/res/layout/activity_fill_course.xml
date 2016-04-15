@@ -88,7 +88,7 @@
             android:id="@+id/button"
             android:fontFamily="Roboto-Thin"
             android:layout_alignWithParentIfMissing="false"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="70dp"
             android:background="#9BDDFF"
             android:layout_below="@+id/checkBoxSun"
             android:layout_alignParentLeft="true"
@@ -259,12 +259,12 @@
             android:text="08:00"
             android:id="@+id/mon_start_text"
             android:layout_alignBottom="@+id/checkBoxMon"
-            android:layout_below="@+id/textView2"
             android:layout_toRightOf="@+id/checkBoxMon"
             android:layout_toEndOf="@+id/checkBoxMon"
             android:textAlignment="center"
             android:gravity="center|center_vertical|center_horizontal"
-            android:textColor="#474747" />
+            android:textColor="#474747"
+            android:layout_below="@+id/textView2" />
 
         <Button
             style="?android:attr/buttonStyleSmall"
@@ -636,10 +636,10 @@
             android:text="Latitude Not Set"
             android:id="@+id/latitude_text"
             android:paddingTop="20dp"
-            android:layout_below="@+id/checkBoxSun"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:gravity="left" />
+            android:gravity="left"
+            android:layout_below="@+id/checkBoxSun" />
 
         <TextView
             android:layout_width="160dp"

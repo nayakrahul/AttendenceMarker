@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity
                 textView.setLayoutParams(new LinearLayout.LayoutParams(pixels,
                         LinearLayout.LayoutParams.WRAP_CONTENT));
                 LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) textView.getLayoutParams();
-                lp.height = 180;
+                lp.height = 250;
                 textView.setLayoutParams(lp);
                 textView.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
                 textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 30);
@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity
                 perCentage.setLayoutParams(new LinearLayout.LayoutParams(pixels1,
                         LinearLayout.LayoutParams.WRAP_CONTENT));
                 LinearLayout.LayoutParams lp1 = (LinearLayout.LayoutParams) perCentage.getLayoutParams();
-                lp1.height = 180;
+                lp1.height = 250;
                 perCentage.setLayoutParams(lp1);
                 perCentage.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
                 perCentage.setTextSize(TypedValue.COMPLEX_UNIT_SP, 30);

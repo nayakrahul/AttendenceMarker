@@ -20,7 +20,7 @@ import java.util.ArrayList;
 /**
  * Created by RAHUL on 04-04-2016.
  */
-public class Attendance extends AppCompatActivity implements GPSData.onSyncCoordinate {
+public class Attendance extends AppCompatActivity implements GPSData.onSyncCoordinate, DeleteWarning.onSomeEventListener {
     private DBHelper mydb ;
     private TextView desc, stats;
     private String id;
@@ -124,12 +124,9 @@ public class Attendance extends AppCompatActivity implements GPSData.onSyncCoord
         btn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // put code on click operation
-                if (mydb.deleteCourse(id)) {
-                    Toast.makeText(Attendance.this, "Course Deleted", Toast.LENGTH_SHORT).show();
-                    Intent nextScreen = new Intent(getApplicationContext(), Course.class);
-                    startActivity(nextScreen);
-                } else
-                    Toast.makeText(Attendance.this, "Failed", Toast.LENGTH_SHORT).show();
+                FragmentManager fm = getFragmentManager();
+                DeleteWarning dialogFragment = new DeleteWarning ();
+                dialogFragment.show(fm, "Sample Fragment");
             }
         });
         LinearLayout.LayoutParams params1 = (LinearLayout.LayoutParams)btn.getLayoutParams();
@@ -222,5 +219,19 @@ public class Attendance extends AppCompatActivity implements GPSData.onSyncCoord
 
        String ret_val = presentCount+"/"+(absentCount+presentCount);
         return ret_val;
+    }
+
+    public void someEvent(String s) {
+        if(s.matches("yes")){
+            if (mydb.deleteCourse(id)) {
+                    Toast.makeText(Attendance.this, "Course Deleted", Toast.LENGTH_SHORT).show();
+                    Intent nextScreen = new Intent(getApplicationContext(), Course.class);
+                    startActivity(nextScreen);
+                } else
+                    Toast.makeText(Attendance.this, "Failed", Toast.LENGTH_SHORT).show();
+        }
+        else {
+            return;
+        }
     }
 }
