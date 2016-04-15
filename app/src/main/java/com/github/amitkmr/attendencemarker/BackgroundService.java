@@ -175,11 +175,10 @@ public class BackgroundService extends Service implements LocationListener {
                 }
                 else if(current_time.compareTo(end_time) > 0){
                     coursesNotAttended.add(course_id);
-                    mydb.makeAttendance(course_id, current_date, 0);
+                    if(mydb.makeAttendance(course_id, current_date, 0))
+                        Notify(course_id, current_date, "Not Attended");
                 }
             }
-
-
 
         }
 

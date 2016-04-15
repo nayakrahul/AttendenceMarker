@@ -22,7 +22,7 @@ import java.util.ArrayList;
  */
 public class Attendance extends AppCompatActivity implements GPSData.onSyncCoordinate {
     private DBHelper mydb ;
-    private TextView desc;
+    private TextView desc, stats;
     private String id;
     private String data;
 
@@ -39,6 +39,9 @@ public class Attendance extends AppCompatActivity implements GPSData.onSyncCoord
         // set the course Name
         desc = (TextView) findViewById(R.id.courseName);
         desc.setText(data);
+
+        stats = (TextView) findViewById(R.id.attendance_score);
+        stats.setText(getStats(id));
 
         ArrayList<String> days = new ArrayList<String>();
         days = mydb.getCoursesColumnDay(id);
@@ -104,26 +107,34 @@ public class Attendance extends AppCompatActivity implements GPSData.onSyncCoord
         }
         LinearLayout ll = new LinearLayout(this);
         ll.setOrientation(LinearLayout.HORIZONTAL);
+
         final Button btn = new Button(this);
         btn.setLayoutParams(
                 new LinearLayout.LayoutParams(
-                        RadioGroup.LayoutParams.FILL_PARENT, RadioGroup.LayoutParams.FILL_PARENT));
+                        RadioGroup.LayoutParams.MATCH_PARENT, RadioGroup.LayoutParams.MATCH_PARENT));
         btn.setText("DELETE COURSE");
         // set the layoutParams on the button
         btn.setLayoutParams(params);
+        float scale = this.getResources().getDisplayMetrics().density;
+        int pixels1 = (int) (20 * scale + 0.5f);
+        int pixels2 = (int) (30 * scale + 0.5f);
+        btn.setPadding(pixels1, pixels2, pixels1, pixels2);
+
         // Set click listener for button
         btn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // put code on click operation
-                if(mydb.deleteCourse(id)) {
+                if (mydb.deleteCourse(id)) {
                     Toast.makeText(Attendance.this, "Course Deleted", Toast.LENGTH_SHORT).show();
                     Intent nextScreen = new Intent(getApplicationContext(), Course.class);
                     startActivity(nextScreen);
-                }
-                else
+                } else
                     Toast.makeText(Attendance.this, "Failed", Toast.LENGTH_SHORT).show();
             }
         });
+        LinearLayout.LayoutParams params1 = (LinearLayout.LayoutParams)btn.getLayoutParams();
+        params1.setMargins(320, 50, 320, 100);
+        btn.setLayoutParams(params1);
 
         //Add button to LinearLayout
         ll.addView(btn);
@@ -140,13 +151,6 @@ public class Attendance extends AppCompatActivity implements GPSData.onSyncCoord
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
     }
-
-
-
-
-
-
-
 
 
     public void CoordinatesSetOrNot(String id){
@@ -203,6 +207,20 @@ public class Attendance extends AppCompatActivity implements GPSData.onSyncCoord
         nextScreen.putExtra("id", id);
         startActivity(nextScreen);
 
+    }
 
+    public String getStats(String id){
+        int presentCount = 0, absentCount = 0;
+        ArrayList<Integer> attendanceList = new ArrayList<Integer>();
+        attendanceList = mydb.getCoursesColumnAttendance(id);
+        for(Integer i : attendanceList){
+            if(i == 1)
+                presentCount++;
+            else
+                absentCount++;
+        }
+
+       String ret_val = presentCount+"/"+(absentCount+presentCount);
+        return ret_val;
     }
 }

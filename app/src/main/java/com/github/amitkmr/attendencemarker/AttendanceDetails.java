@@ -100,7 +100,8 @@ public class AttendanceDetails extends AppCompatActivity{
             }
             status.setBackgroundResource(R.drawable.course_border);
             status.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
-            status.setPadding(100, pp, pp, pp);
+            int center = (int) (55 * scale + 0.5f);
+            status.setPadding(center, pp, pp, pp);
             status.setGravity(Gravity.CENTER | Gravity.RIGHT);
             ll.addView(status);
 

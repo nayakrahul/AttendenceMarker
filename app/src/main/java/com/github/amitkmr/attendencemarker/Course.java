@@ -30,15 +30,14 @@ public class Course extends AppCompatActivity {
 
         ArrayList<String> courses = new ArrayList<String>();
         courses = mydb.getAllCoursesID();
-        ArrayList<String> courseDisplayed = new ArrayList<String>();
+
         int N = courses.size();
         LinearLayout linearLayout = (LinearLayout) findViewById(R.id.courses);
 
         for (int i = 0; i < N; i++) {
-            final String text = courses.get(i);
-            Object objText = text;
-            if(!courseDisplayed.contains(objText)) {
-                courseDisplayed.add(text);
+                final String text = courses.get(i);
+                Object objText = text;
+
                 TextView textView = new TextView(this);
                 textView.setBackgroundResource(R.drawable.course_border);
                 GradientDrawable drawable = (GradientDrawable) textView.getBackground();
@@ -65,10 +64,10 @@ public class Course extends AppCompatActivity {
                         startActivity(nextScreen);
                     }
                 });
-            }
+
         }
 
-        setTitle("Courses");
+
         android.support.v7.app.ActionBar actionBar = getSupportActionBar();
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);

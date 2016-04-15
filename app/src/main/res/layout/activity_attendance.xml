@@ -35,33 +35,32 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:id="@+id/attendence"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="0dp"
         android:padding="15dp"
         android:textSize="@dimen/add_course_text_size"
         android:text="Attendence: "
         android:layout_marginLeft="35dp"
         android:layout_marginStart="35dp"
-        android:layout_alignTop="@+id/attendence_score"
+        android:layout_alignTop="@+id/attendance_score"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:textColor="#414141" />
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:id="@+id/attendence_score"
+        android:id="@+id/attendance_score"
         android:padding="10dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="0dp"
         android:gravity="center"
         android:textSize="@dimen/add_course_text_size"
-        android:text="80%"
+        android:text="0/0"
         android:background="@drawable/circle_boundary"
         android:layout_marginLeft="33dp"
         android:layout_marginStart="33dp"
         android:layout_below="@+id/courseName"
         android:layout_toRightOf="@+id/attendence"
-        android:layout_toEndOf="@+id/attendence"
-        android:layout_gravity="center_horizontal" />
+        android:layout_toEndOf="@+id/attendence" />
     </LinearLayout>
 
     <Button
@@ -79,9 +78,9 @@
 
         android:fontFamily="Roboto-Thin"
         android:textSize="16dp"
-        android:layout_below="@+id/attendence_score"
+        android:layout_below="@+id/attendance_score"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="35dp"
+        android:layout_marginTop="25dp"
         android:layout_marginLeft="25dp"
         android:layout_marginRight="25dp" />
 

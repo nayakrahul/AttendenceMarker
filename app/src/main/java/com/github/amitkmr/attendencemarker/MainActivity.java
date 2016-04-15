@@ -40,39 +40,67 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
         mydb = new DBHelper(this);
 
         ArrayList<String> courses = new ArrayList<String>();
         courses = mydb.getAllCoursesID();
-        ArrayList<String> courseDisplayed = new ArrayList<String>();
+
         int N = courses.size();
         LinearLayout linearLayout = (LinearLayout) findViewById(R.id.activity_main);
 
         for (int i = 0; i < N; i++) {
-            final String text = courses.get(i);
-            Object objText = text;
-            if(!courseDisplayed.contains(objText)) {
-                courseDisplayed.add(text);
+                final String text = courses.get(i);
+                Object objText = text;
+
+                // Create LinearLayout
+                LinearLayout ll = new LinearLayout(this);
+                ll.setOrientation(LinearLayout.HORIZONTAL);
+
                 TextView textView = new TextView(this);
                 textView.setBackgroundResource(R.drawable.course_border);
                 GradientDrawable drawable = (GradientDrawable) textView.getBackground();
                 drawable.setColor(Color.rgb(255, 255, 255));
-                textView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
+                float scale = this.getResources().getDisplayMetrics().density;
+                int pixels = (int) (220 * scale + 0.5f);
+                textView.setLayoutParams(new LinearLayout.LayoutParams(pixels,
                         LinearLayout.LayoutParams.WRAP_CONTENT));
                 LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) textView.getLayoutParams();
                 lp.height = 180;
                 textView.setLayoutParams(lp);
                 textView.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
                 textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 30);
-
                 textView.setText(text);   //course-info
-
                 textView.setPadding(20, 30, 20, 30);
-                linearLayout.addView(textView, linearLayout.getChildCount() - 1);
+
+                ll.addView(textView);
+
+                TextView perCentage = new TextView(this);
+                perCentage.setBackgroundResource(R.drawable.course_border);
+                GradientDrawable drawable1 = (GradientDrawable) perCentage.getBackground();
+                drawable1.setColor(Color.rgb(255, 255, 255));
+                int pixels1 = (int) (105 * scale + 0.5f);
+                perCentage.setLayoutParams(new LinearLayout.LayoutParams(pixels1,
+                        LinearLayout.LayoutParams.WRAP_CONTENT));
+                LinearLayout.LayoutParams lp1 = (LinearLayout.LayoutParams) perCentage.getLayoutParams();
+                lp1.height = 180;
+                perCentage.setLayoutParams(lp1);
+                perCentage.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
+                perCentage.setTextSize(TypedValue.COMPLEX_UNIT_SP, 30);
+                perCentage.setPadding(20, 30, 20, 30);
+                int percentage = calculatePercenatge(text);
+                perCentage.setText(percentage+"%");
+                ll.addView(perCentage);
+
+                linearLayout.addView(ll, linearLayout.getChildCount() - 1);
+
                 LinearLayout.LayoutParams params = (LinearLayout.LayoutParams)textView.getLayoutParams();
                 params.setMargins(0, 20, 0, 20);
                 textView.setLayoutParams(params);
+
+                LinearLayout.LayoutParams params1 = (LinearLayout.LayoutParams)perCentage.getLayoutParams();
+                params1.setMargins(0, 20, 0, 20);
+                perCentage.setLayoutParams(params1);
+
                 textView.setOnClickListener(new View.OnClickListener() {
 
                     @Override
@@ -83,7 +111,18 @@ public class MainActivity extends AppCompatActivity
                         startActivity(nextScreen);
                     }
                 });
-            }
+
+                perCentage.setOnClickListener(new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+                        // TODO Auto-generated method stub
+                        Intent nextScreen = new Intent(getApplicationContext(), AttendanceDetails.class);
+                        nextScreen.putExtra("id", text);
+                        startActivity(nextScreen);
+                    }
+                });
+
         }
 
 
@@ -163,7 +202,22 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
-
+    public int calculatePercenatge(String id){
+        int presentCount = 0, absentCount = 0;
+        ArrayList<Integer> attendanceList = new ArrayList<Integer>();
+        attendanceList = mydb.getCoursesColumnAttendance(id);
+        for(Integer i : attendanceList){
+            if(i == 1)
+                presentCount++;
+            else
+                absentCount++;
+        }
+        if(absentCount+presentCount == 0){
+            return 0;
+        }
+        int percentage = presentCount*100/(presentCount+absentCount);
+        return percentage;
+    }
 
 
 }

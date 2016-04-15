@@ -162,7 +162,7 @@ public class Fill_Course extends AppCompatActivity implements TimePickerFragment
                     Toast.makeText(this, "Failed", Toast.LENGTH_SHORT).show();
                 }
 
-                Intent nextScreen = new Intent(getApplicationContext(), Course.class);
+                Intent nextScreen = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(nextScreen);
             }
             else {

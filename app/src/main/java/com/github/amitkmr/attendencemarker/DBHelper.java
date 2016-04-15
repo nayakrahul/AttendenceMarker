@@ -284,7 +284,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
         //hp = new HashMap();
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor res =  db.rawQuery( "select * from course_info", null );
+        Cursor res =  db.rawQuery( "select * from course_location_info", null );
         res.moveToFirst();
 
         while(res.isAfterLast() == false){
@@ -300,7 +300,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
         //hp = new HashMap();
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor res =  db.rawQuery( "select * from course_info", null );
+        Cursor res =  db.rawQuery( "select * from course_location_info", null );
         res.moveToFirst();
 
         while(res.isAfterLast() == false){
