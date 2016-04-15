@@ -6,14 +6,14 @@
     android:layout_height="wrap_content"
     tools:context=".DisplayContact" >
 
-<RelativeLayout
+<LinearLayout
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/course_detail"
     android:weightSum="1">
 
     <TextView
-        android:layout_width="fill_parent"
+        android:layout_width="360dp"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:textAppearance="?android:attr/textAppearanceLarge"
@@ -25,6 +25,11 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="20dp">
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -55,10 +60,12 @@
         android:layout_marginStart="33dp"
         android:layout_below="@+id/courseName"
         android:layout_toRightOf="@+id/attendence"
-        android:layout_toEndOf="@+id/attendence" />
+        android:layout_toEndOf="@+id/attendence"
+        android:layout_gravity="center_horizontal" />
+    </LinearLayout>
 
     <Button
-        android:layout_width="300dp"
+        android:layout_width="match_parent"
         android:layout_height="50dp"
         android:text="Attendence Details"
         android:id="@+id/attendance_details_button"
@@ -74,27 +81,12 @@
         android:textSize="16dp"
         android:layout_below="@+id/attendence_score"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="35dp" />
-    <TextView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:id="@+id/schedule"
-        android:padding="5dp"
-        android:background="@drawable/course_border"
-        android:textSize="@dimen/add_course_text_size"
-        android:text="Schedule"
-
-        android:layout_below="@+id/attendance_details_button"
-        android:layout_alignParentLeft="true"
-
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="80dp"
-        android:visibility="visible" />
+        android:layout_marginTop="35dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp" />
 
     <Button
-        android:layout_width="300dp"
+        android:layout_width="match_parent"
         android:layout_height="50dp"
         android:text="edit coordinates of venue"
         android:id="@+id/coordinate_check"
@@ -107,8 +99,28 @@
         android:textSize="14dp"
         android:layout_below="@+id/attendance_details_button"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp" />
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp" />
 
-</RelativeLayout>
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:id="@+id/schedule"
+        android:padding="10dp"
+        android:background="@drawable/course_border"
+        android:textSize="26dp"
+        android:text="Schedule"
+
+        android:layout_below="@+id/attendance_details_button"
+        android:layout_alignParentLeft="true"
+
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="20dp"
+        android:visibility="visible" />
+
+</LinearLayout>
     </ScrollView>
 

@@ -5,10 +5,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -38,8 +40,8 @@ public class Attendance extends AppCompatActivity implements GPSData.onSyncCoord
         desc = (TextView) findViewById(R.id.courseName);
         desc.setText(data);
 
-        ArrayList<String> day = new ArrayList<String>();
-        day = mydb.getCoursesColumnDay(id);
+        ArrayList<String> days = new ArrayList<String>();
+        days = mydb.getCoursesColumnDay(id);
 
         ArrayList<Integer> start_hour = new ArrayList<Integer>();
         start_hour = mydb.getCoursesColumnStartHr(id);
@@ -53,67 +55,99 @@ public class Attendance extends AppCompatActivity implements GPSData.onSyncCoord
         ArrayList<Integer> end_min = new ArrayList<Integer>();
         end_min = mydb.getCoursesColumnEndMin(id);
 
-        int N = day.size();
-        TextView temp = new TextView(this);
-        temp = (TextView) findViewById(R.id.schedule);
-        RelativeLayout relativeLayout = (RelativeLayout) findViewById(R.id.course_detail);
+        int N = days.size();
+
+        final LinearLayout lm = (LinearLayout) findViewById(R.id.course_detail);
+
+        // create the layout params that will be used to define how your
+        // button will be displayed
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                RadioGroup.LayoutParams.WRAP_CONTENT, RadioGroup.LayoutParams.WRAP_CONTENT);
         for(int i = 0; i < N; i++){
-            TextView textView = new TextView(this);
-            RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(
-                    RelativeLayout.LayoutParams.MATCH_PARENT,
-                    RelativeLayout.LayoutParams.WRAP_CONTENT);
-            lp.addRule(RelativeLayout.BELOW, temp.getId());
-            textView.setLayoutParams(lp);
-            textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
-            String s = day.get(i)+" : " + String.format("%02d", start_hour.get(i)) + ":" + String.format("%02d", start_min.get(i))
-                        +" - "+String.format("%02d", end_hour.get(i)) + ":" + String.format("%02d", end_min.get(i));
-            textView.setText(s);
-            textView.setPadding(20, 10, 0, 0);
-            textView.setId(View.generateViewId());
-            relativeLayout.addView(textView, relativeLayout.getChildCount() - 1);
-            temp = textView;
+            // Create LinearLayout
+            LinearLayout ll = new LinearLayout(this);
+            ll.setOrientation(LinearLayout.HORIZONTAL);
+
+            // Create TextView
+            TextView schedule_day = new TextView(this);
+            float scale = this.getResources().getDisplayMetrics().density;
+            int pixels = (int) (180 * scale + 0.5f);
+            schedule_day.setLayoutParams(
+                    new LinearLayout.LayoutParams(
+                            pixels, RadioGroup.LayoutParams.WRAP_CONTENT));
+            schedule_day.setText(days.get(i));
+            schedule_day.setBackgroundResource(R.drawable.course_border);
+            schedule_day.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
+            int pp = (int) (10 * scale + 0.5f);
+            schedule_day.setPadding(pp, pp, pp, pp);
+            schedule_day.setGravity(Gravity.CENTER);
+            ll.addView(schedule_day);
+
+            // Create TextView
+            TextView schedule_time = new TextView(this);
+            pixels = (int) (180 * scale + 0.5f);
+            schedule_time.setLayoutParams(
+                    new LinearLayout.LayoutParams(
+                            pixels, RadioGroup.LayoutParams.WRAP_CONTENT));
+            String time = String.format("%02d", start_hour.get(i)) + ":" + String.format("%02d", start_min.get(i))
+                    +" - "+String.format("%02d", end_hour.get(i)) + ":" + String.format("%02d", end_min.get(i));
+            schedule_time.setText(time);
+            schedule_time.setBackgroundResource(R.drawable.course_border);
+            schedule_time.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
+            schedule_time.setPadding(pp, pp, pp, pp);
+            schedule_time.setGravity(Gravity.CENTER);
+            ll.addView(schedule_time);
+
+            //Add button to LinearLayout defined in XML
+            lm.addView(ll);
+
         }
-
-        // Add Delete Course Button
-        Button btn = new Button(this);
+        LinearLayout ll = new LinearLayout(this);
+        ll.setOrientation(LinearLayout.HORIZONTAL);
+        final Button btn = new Button(this);
+        btn.setLayoutParams(
+                new LinearLayout.LayoutParams(
+                        RadioGroup.LayoutParams.FILL_PARENT, RadioGroup.LayoutParams.FILL_PARENT));
         btn.setText("DELETE COURSE");
-        RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(
-                RelativeLayout.LayoutParams.WRAP_CONTENT,
-                RelativeLayout.LayoutParams.WRAP_CONTENT);
-        lp.addRule(RelativeLayout.BELOW, temp.getId());
-        lp.addRule(RelativeLayout.CENTER_IN_PARENT, RelativeLayout.TRUE);
-        btn.setLayoutParams(lp);
-        btn.setPadding(10, 0, 10, 0);
-        btn.setBackgroundColor(0x9BDDFF);
-        relativeLayout.addView(btn, relativeLayout.getChildCount() - 1);
-
+        // set the layoutParams on the button
+        btn.setLayoutParams(params);
+        // Set click listener for button
         btn.setOnClickListener(new View.OnClickListener() {
-                                   @Override
-                                   public void onClick(View v) {
-                                       // put code on click operation
-                                       if(mydb.deleteCourse(id)) {
-                                           Toast.makeText(Attendance.this, "Course Deleted", Toast.LENGTH_SHORT).show();
-                                           Intent nextScreen = new Intent(getApplicationContext(), Course.class);
-                                           startActivity(nextScreen);
-                                       }
-                                       else
-                                           Toast.makeText(Attendance.this, "Failed", Toast.LENGTH_SHORT).show();
+            public void onClick(View v) {
+                // put code on click operation
+                if(mydb.deleteCourse(id)) {
+                    Toast.makeText(Attendance.this, "Course Deleted", Toast.LENGTH_SHORT).show();
+                    Intent nextScreen = new Intent(getApplicationContext(), Course.class);
+                    startActivity(nextScreen);
+                }
+                else
+                    Toast.makeText(Attendance.this, "Failed", Toast.LENGTH_SHORT).show();
+            }
+        });
 
-                                   }
-                               });
+        //Add button to LinearLayout
+        ll.addView(btn);
+        //Add button to LinearLayout defined in XML
+        lm.addView(ll);
 
-                // get the latitude and longitude from the table
-                CoordinatesSetOrNot(id);
+        // get the latitude and longitude from the table
+        CoordinatesSetOrNot(id);
 
         //set titile in the app bar
-        setTitle("   "+id);
+        setTitle("   " + id);
         // return to to the home screen
         android.support.v7.app.ActionBar actionBar = getSupportActionBar();
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
-
-
     }
+
+
+
+
+
+
+
+
 
     public void CoordinatesSetOrNot(String id){
         String data1, data2;
