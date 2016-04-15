@@ -77,13 +77,14 @@ public class Attendance extends AppCompatActivity implements GPSData.onSyncCoord
         // get the latitude and longitude from the table
         CoordinatesSetOrNot(id);
 
+        //set titile in the app bar
+        setTitle("   "+id);
         // return to to the home screen
         android.support.v7.app.ActionBar actionBar = getSupportActionBar();
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
 
-        //set titile in the app bar
-        setTitle(id);
+
     }
 
     public void CoordinatesSetOrNot(String id){
@@ -137,6 +138,9 @@ public class Attendance extends AppCompatActivity implements GPSData.onSyncCoord
     public void onClickAttendanceDetails(View v) {
 
         Intent nextScreen = new Intent(getApplicationContext(), AttendanceDetails.class);
+        nextScreen.putExtra("id", id);
         startActivity(nextScreen);
+
+
     }
 }

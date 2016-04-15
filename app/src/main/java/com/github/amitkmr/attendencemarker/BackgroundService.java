@@ -22,7 +22,13 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Collections;
 import android.widget.Toast;
+
+import com.google.android.gms.vision.barcode.Barcode;
+
 import java.util.Timer;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 /**
  * Created by RAHUL on 14-04-2016.
@@ -165,7 +171,47 @@ public class BackgroundService extends Service implements LocationListener {
 
         latitude  = location.getLatitude()+"";
         longitude = location.getLongitude()+"";
-        Toast.makeText(this, "latitude:"+latitude, Toast.LENGTH_SHORT).show();
+
+        Calendar calendar = Calendar.getInstance();
+        int day = calendar.get(Calendar.DAY_OF_WEEK);
+        int currentHour = calendar.get(Calendar.HOUR);
+        int currentMinute = calendar.get(Calendar.MINUTE);
+
+        Log.i("Background Activity","CurrentHour: "+currentHour+" currentMinute: "+currentMinute);
+
+//        String schedule = daySchedule.get(0);
+        int length = daySchedule.size();
+        if (length !=0)
+        {
+//            Toast.makeText(this, "schedule:"+length, Toast.LENGTH_SHORT).show();
+//
+//            int index = 0;
+//            while(index < length)
+//            {
+//                String schedule = daySchedule.get(index);
+//                String[] startEndTime = schedule.split("-");
+//                String startTime = startEndTime[0];
+//                String endTime = startEndTime[1];
+//
+//                String[] startHourMinute = startTime.split(":");
+//                int startHour = Integer.parseInt(startHourMinute[0]);
+//                int startMinute = Integer.parseInt((startHourMinute[1]));
+//
+//
+//                String[] endHourMinute = startTime.split(":");
+//                int endHour = Integer.parseInt(startHourMinute[0]);
+//                int endMinute = Integer.parseInt((startHourMinute[1]));
+//
+//                if (currentHour <= endHour && currentHour >= startHour)
+//                {
+//
+//
+//                }
+//            }
+
+        }
+
+
     }
 
     @Override

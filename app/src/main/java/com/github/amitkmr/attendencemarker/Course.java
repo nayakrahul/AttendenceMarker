@@ -67,6 +67,8 @@ public class Course extends AppCompatActivity {
                 });
             }
         }
+
+        setTitle("Courses");
         android.support.v7.app.ActionBar actionBar = getSupportActionBar();
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);

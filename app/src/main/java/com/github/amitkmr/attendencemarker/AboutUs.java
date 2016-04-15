@@ -32,6 +32,7 @@ public class AboutUs extends AppCompatActivity {
         setContentView(R.layout.activity_aboutus);
 
         // Back button to reach to home activity
+        setTitle("About Us");
         android.support.v7.app.ActionBar actionBar = getSupportActionBar();
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
