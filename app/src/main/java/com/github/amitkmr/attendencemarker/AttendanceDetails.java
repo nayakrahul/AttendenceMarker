@@ -15,6 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.util.AttributeSet;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -22,7 +23,7 @@ import java.util.ArrayList;
 /**
  * Created by RAHUL on 01-04-2016.
  */
-public class AttendanceDetails extends AppCompatActivity {
+public class AttendanceDetails extends AppCompatActivity{
     private DBHelper mydb ;
     private TextView desc;
     private String data;
@@ -61,6 +62,8 @@ public class AttendanceDetails extends AppCompatActivity {
                 RadioGroup.LayoutParams.WRAP_CONTENT, RadioGroup.LayoutParams.WRAP_CONTENT);
 
         //Create four
+        int totalScheduledClasses = N;
+        int attendedClasses = 0;
         for(int i = 0; i < N; i++)
         {
             // Create LinearLayout
@@ -89,6 +92,7 @@ public class AttendanceDetails extends AppCompatActivity {
                     new LinearLayout.LayoutParams(
                             pixels, RadioGroup.LayoutParams.WRAP_CONTENT));
             if(attendance.get(i) == 1){
+                attendedClasses++;
                 status.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_done_24dp, 0, 0, 0);
             }
             else{
@@ -108,7 +112,12 @@ public class AttendanceDetails extends AppCompatActivity {
 
         // return to to the home screen
 
-        setTitle("   "+id);
+        DonutChart donutChart = (DonutChart) findViewById(R.id.donutChart);
+        donutChart.pieChartVariableA = totalScheduledClasses;
+        donutChart.pieChartVariableB = attendedClasses;
+
+
+        setTitle("   " + id);
         android.support.v7.app.ActionBar actionBar = getSupportActionBar();
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);

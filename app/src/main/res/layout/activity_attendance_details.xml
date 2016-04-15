@@ -33,6 +33,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             customviews:radius="90dp"
+            customviews:variableA="50"
+            customviews:variableB="40"
             android:layout_gravity="center"
             android:layout_below="@+id/courseName"
             android:layout_alignParentLeft="true"

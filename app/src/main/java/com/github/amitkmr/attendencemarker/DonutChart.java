@@ -16,7 +16,12 @@ import android.graphics.Shader.TileMode;
 import android.util.AttributeSet;
 import android.view.View;
 
+import java.security.PublicKey;
+
 public class DonutChart extends View {
+
+    int pieChartVariableA;
+    int pieChartVariableB;
 
 
     private float radius;
@@ -42,6 +47,8 @@ public class DonutChart extends View {
 
         try {
             radius = a.getDimension(R.styleable.DonutChart_radius, 20.0f);
+            pieChartVariableA = a.getInteger(R.styleable.DonutChart_variableA,0);
+            pieChartVariableB = a.getInteger(R.styleable.DonutChart_variableB,0);
         } finally {
             a.recycle();
         }
@@ -86,18 +93,24 @@ public class DonutChart extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-        int totalClasses = 50;
-        int attendedClasses = 40;
+        int totalClasses = pieChartVariableA;
+        int attendedClasses = pieChartVariableB;
 
-        int greenGradientAngle = (attendedClasses*360/totalClasses);
-        int redGradientAngle = 360-greenGradientAngle;
+        if (totalClasses==0)
+        {
+            totalClasses = 1;
+
+        }
+
+        float greenGradientAngle = (attendedClasses*359.9f/totalClasses);
+        float redGradientAngle = 359.9f-greenGradientAngle;
 
 
         // draw shadow
         paint.setShader(null);
         float adjust = (.0095f*radius);
         paint.setShadowLayer(8, adjust, -adjust, 0xaa000000);
-        drawDonut(canvas,paint, 0,359.9f);
+       // drawDonut(canvas,paint, 0,359.9f);
 
 
         // green
