@@ -74,8 +74,36 @@ public class Attendance extends AppCompatActivity implements GPSData.onSyncCoord
             temp = textView;
         }
 
-        // get the latitude and longitude from the table
-        CoordinatesSetOrNot(id);
+        // Add Delete Course Button
+        Button btn = new Button(this);
+        btn.setText("DELETE COURSE");
+        RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(
+                RelativeLayout.LayoutParams.WRAP_CONTENT,
+                RelativeLayout.LayoutParams.WRAP_CONTENT);
+        lp.addRule(RelativeLayout.BELOW, temp.getId());
+        lp.addRule(RelativeLayout.CENTER_IN_PARENT, RelativeLayout.TRUE);
+        btn.setLayoutParams(lp);
+        btn.setPadding(10, 0, 10, 0);
+        btn.setBackgroundColor(0x9BDDFF);
+        relativeLayout.addView(btn, relativeLayout.getChildCount() - 1);
+
+        btn.setOnClickListener(new View.OnClickListener() {
+                                   @Override
+                                   public void onClick(View v) {
+                                       // put code on click operation
+                                       if(mydb.deleteCourse(id)) {
+                                           Toast.makeText(Attendance.this, "Course Deleted", Toast.LENGTH_SHORT).show();
+                                           Intent nextScreen = new Intent(getApplicationContext(), Course.class);
+                                           startActivity(nextScreen);
+                                       }
+                                       else
+                                           Toast.makeText(Attendance.this, "Failed", Toast.LENGTH_SHORT).show();
+
+                                   }
+                               });
+
+                // get the latitude and longitude from the table
+                CoordinatesSetOrNot(id);
 
         // return to to the home screen
         android.support.v7.app.ActionBar actionBar = getSupportActionBar();
@@ -110,14 +138,19 @@ public class Attendance extends AppCompatActivity implements GPSData.onSyncCoord
     }
 
     public void syncCoordinate(String s1, String s2) {
-        if(mydb.updateCoordinates(id, data, s1, s2)){
-            Toast.makeText(this, "Coordinates Updated", Toast.LENGTH_SHORT).show();
+        if(s1 != null && s2 != null) {
+            if (mydb.updateCoordinates(id, data, s1, s2)) {
+                Toast.makeText(this, "Coordinates Updated", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(this, "Failed", Toast.LENGTH_SHORT).show();
+            }
+            Button btn = (Button) findViewById(R.id.coordinate_check);
+            btn.setText("EDIT COORDINATES OF VENUE");
         }
-        else {
-            Toast.makeText(this, "Failed", Toast.LENGTH_SHORT).show();
+        else{
+            Toast.makeText(this, "Coordinates Not Found", Toast.LENGTH_SHORT).show();
         }
-        Button btn=(Button)findViewById(R.id.coordinate_check);
-        btn.setText("EDIT COORDINATES OF VENUE");
+
     }
 
     @Override
@@ -137,6 +170,7 @@ public class Attendance extends AppCompatActivity implements GPSData.onSyncCoord
     public void onClickAttendanceDetails(View v) {
 
         Intent nextScreen = new Intent(getApplicationContext(), AttendanceDetails.class);
+        nextScreen.putExtra("id", id);
         startActivity(nextScreen);
     }
 }

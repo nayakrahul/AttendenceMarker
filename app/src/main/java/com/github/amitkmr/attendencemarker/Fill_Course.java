@@ -34,11 +34,14 @@ public class Fill_Course extends AppCompatActivity implements TimePickerFragment
         android.support.v7.app.ActionBar actionBar = getSupportActionBar();
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
+
+        setTitle("Fill Details");
     }
 
     CheckBox checkBox_mon, checkBox_tue, checkBox_wed, checkBox_thu, checkBox_fri, checkBox_sat, checkBox_sun;
     public void onClick(View v)
     {
+        int flag = 0;
         EditText courseNo = (EditText) findViewById(R.id.course_no);
         EditText courseName = (EditText) findViewById(R.id.course_name);
         String course_no = courseNo.getText().toString();
@@ -62,6 +65,7 @@ public class Fill_Course extends AppCompatActivity implements TimePickerFragment
             String time1, time2;
             TextView timeText1, timeText2;
             if (checkBox_mon.isChecked()) {
+                flag = 1;
                 timeText1 = (TextView) findViewById(R.id.mon_start_text);
                 time1 = timeText1.getText().toString();
                 timeText2 = (TextView) findViewById(R.id.mon_end_text);
@@ -73,6 +77,7 @@ public class Fill_Course extends AppCompatActivity implements TimePickerFragment
                         Integer.parseInt(parts2[0]), Integer.parseInt(parts2[1]));
             }
             if (checkBox_tue.isChecked()) {
+                flag = 1;
                 timeText1 = (TextView) findViewById(R.id.tue_start_text);
                 time1 = timeText1.getText().toString();
                 timeText2 = (TextView) findViewById(R.id.tue_end_text);
@@ -84,6 +89,7 @@ public class Fill_Course extends AppCompatActivity implements TimePickerFragment
                         Integer.parseInt(parts2[0]), Integer.parseInt(parts2[1]));
             }
             if (checkBox_wed.isChecked()) {
+                flag = 1;
                 timeText1 = (TextView) findViewById(R.id.wed_start_text);
                 time1 = timeText1.getText().toString();
                 timeText2 = (TextView) findViewById(R.id.wed_end_text);
@@ -95,6 +101,7 @@ public class Fill_Course extends AppCompatActivity implements TimePickerFragment
                         Integer.parseInt(parts2[0]), Integer.parseInt(parts2[1]));
             }
             if (checkBox_thu.isChecked()) {
+                flag = 1;
                 timeText1 = (TextView) findViewById(R.id.thu_start_text);
                 time1 = timeText1.getText().toString();
                 timeText2 = (TextView) findViewById(R.id.thu_end_text);
@@ -106,6 +113,7 @@ public class Fill_Course extends AppCompatActivity implements TimePickerFragment
                         Integer.parseInt(parts2[0]), Integer.parseInt(parts2[1]));
             }
             if (checkBox_fri.isChecked()) {
+                flag = 1;
                 timeText1 = (TextView) findViewById(R.id.fri_start_text);
                 time1 = timeText1.getText().toString();
                 timeText2 = (TextView) findViewById(R.id.fri_end_text);
@@ -117,6 +125,7 @@ public class Fill_Course extends AppCompatActivity implements TimePickerFragment
                         Integer.parseInt(parts2[0]), Integer.parseInt(parts2[1]));
             }
             if (checkBox_sat.isChecked()) {
+                flag = 1;
                 timeText1 = (TextView) findViewById(R.id.sat_start_text);
                 time1 = timeText1.getText().toString();
                 timeText2 = (TextView) findViewById(R.id.sat_end_text);
@@ -128,6 +137,7 @@ public class Fill_Course extends AppCompatActivity implements TimePickerFragment
                         Integer.parseInt(parts2[0]), Integer.parseInt(parts2[1]));
             }
             if (checkBox_sun.isChecked()) {
+                flag = 1;
                 timeText1 = (TextView) findViewById(R.id.sun_start_text);
                 time1 = timeText1.getText().toString();
                 timeText2 = (TextView) findViewById(R.id.sun_end_text);
@@ -141,17 +151,20 @@ public class Fill_Course extends AppCompatActivity implements TimePickerFragment
 
             TextView latitudeText = (TextView) findViewById(R.id.latitude_text);
             TextView longitudeText = (TextView) findViewById(R.id.longitude_text);
+            if(flag == 1) {
+                if (mydb.insertCoordinates(id.getText().toString(), name.getText().toString(),
+                        latitudeText.getText().toString(), longitudeText.getText().toString())) {
+                    Toast.makeText(this, "Course Saved", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(this, "Failed", Toast.LENGTH_SHORT).show();
+                }
 
-            if(mydb.insertCoordinates(id.getText().toString(), name.getText().toString(),
-                    latitudeText.getText().toString(), longitudeText.getText().toString())) {
-                Toast.makeText(this, "Course Saved", Toast.LENGTH_SHORT).show();
+                Intent nextScreen = new Intent(getApplicationContext(), Course.class);
+                startActivity(nextScreen);
             }
             else {
-                Toast.makeText(this, "Failed", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Select atleast 1 day", Toast.LENGTH_SHORT).show();
             }
-
-            Intent nextScreen = new Intent(getApplicationContext(), Course.class);
-            startActivity(nextScreen);
         }
     }
 
@@ -307,12 +320,17 @@ public class Fill_Course extends AppCompatActivity implements TimePickerFragment
 
     public void syncCoordinate(String s1, String s2) {
 
-
-        TextView latitudeText = (TextView) findViewById(R.id.latitude_text);
-        latitudeText.setText(s1);
-
-        TextView longitudeText = (TextView) findViewById(R.id.longitude_text);
-        longitudeText.setText(s2);
+        if(s1 != null) {
+            TextView latitudeText = (TextView) findViewById(R.id.latitude_text);
+            latitudeText.setText(s1);
+        }
+        if(s2 != null) {
+            TextView longitudeText = (TextView) findViewById(R.id.longitude_text);
+            longitudeText.setText(s2);
+        }
+        else {
+            Toast.makeText(this, "Coordinates Not Found", Toast.LENGTH_SHORT).show();
+        }
 
     }
 

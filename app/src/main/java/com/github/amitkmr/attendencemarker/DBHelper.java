@@ -25,6 +25,8 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String COURSES_COLUMN_END_MIN = "end_minute";
     public static final String COURSES_COLUMN_LATITUDE = "latitude";
     public static final String COURSES_COLUMN_LONGITUDE = "longitude";
+    public static final String COURSES_COLUMN_DATE = "date";
+    public static final String COURSES_COLUMN_ATTENDANCE = "attendance";
 
     private HashMap hp;
 
@@ -47,6 +49,11 @@ public class DBHelper extends SQLiteOpenHelper {
                 "create table course_location_info " +
                         "(id text, name text, latitude text, longitude text)"
         );
+
+        db.execSQL(
+                "create table course_attendance " +
+                        "(id text, date text, attendance int)"
+        );
     }
 
     @Override
@@ -54,7 +61,18 @@ public class DBHelper extends SQLiteOpenHelper {
         // TODO Auto-generated method stub
         db.execSQL("DROP TABLE IF EXISTS course_info");
         db.execSQL("DROP TABLE IF EXISTS course_location_info");
+        db.execSQL("DROP TABLE IF EXISTS course_attendance");
         onCreate(db);
+    }
+
+    public boolean makeAttendance (String id, String date, int attendance){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("id", id);
+        contentValues.put("date", date);
+        contentValues.put("attendance", attendance);
+        db.insert("course_attendance", null, contentValues);
+        return true;
     }
 
     public boolean insertCourse  (String id, String name, String day, int start_hr, int start_min, int end_hr, int end_min)
@@ -176,19 +194,58 @@ public class DBHelper extends SQLiteOpenHelper {
     public ArrayList<String> getTimeByDay (String day){
         ArrayList<String> array_list = new ArrayList<String>();
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor res =  db.rawQuery("select * from course_info where id = ?", new String[]{day});
+        Cursor res =  db.rawQuery("select * from course_info where day = ?", new String[]{day});
         res.moveToFirst();
         while(res.isAfterLast() == false){
             int start_hr = res.getInt(res.getColumnIndex(COURSES_COLUMN_START_HR));
             int start_min = res.getInt(res.getColumnIndex(COURSES_COLUMN_START_MIN));
             int end_hr = res.getInt(res.getColumnIndex(COURSES_COLUMN_END_HR));
             int end_min = res.getInt(res.getColumnIndex(COURSES_COLUMN_END_MIN));
+            String id = res.getString(res.getColumnIndex(COURSES_COLUMN_ID));
             array_list.add(String.format("%02d", start_hr)+":"+String.format("%02d", start_min)+"-"
-                            +String.format("%02d", end_hr)+":"+String.format("%02d", end_min));
+                            +String.format("%02d", end_hr)+":"+String.format("%02d", end_min)+"-"
+                            +id);
             res.moveToNext();
         }
         return array_list;
     }
+
+    public ArrayList<String> getCoursesColumnDate (String id){
+        ArrayList<String> array_list = new ArrayList<String>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor res =  db.rawQuery("select * from course_attendance where id = ?", new String[]{id});
+        res.moveToFirst();
+        while(res.isAfterLast() == false) {
+            array_list.add(res.getString(res.getColumnIndex(COURSES_COLUMN_DATE)));
+            res.moveToNext();
+        }
+        return array_list;
+    }
+
+    public ArrayList<Integer> getCoursesColumnAttendance (String id){
+        ArrayList<Integer> array_list = new ArrayList<Integer>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor res =  db.rawQuery("select * from course_attendance where id = ?", new String[]{id});
+        res.moveToFirst();
+        while(res.isAfterLast() == false){
+            array_list.add(res.getInt(res.getColumnIndex(COURSES_COLUMN_ATTENDANCE)));
+            res.moveToNext();
+        }
+        return array_list;
+    }
+
+    public ArrayList<String> getCoursesByDate (String date){
+        ArrayList<String> array_list = new ArrayList<String>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor res =  db.rawQuery("select * from course_attendance where date = ?", new String[]{date});
+        res.moveToFirst();
+        while(res.isAfterLast() == false){
+            array_list.add(res.getString(res.getColumnIndex(COURSES_COLUMN_ID)));
+            res.moveToNext();
+        }
+        return array_list;
+    }
+
 //    public int numberOfRows(){
 //        SQLiteDatabase db = this.getReadableDatabase();
 //        int numRows = (int) DatabaseUtils.queryNumEntries(db, COURSES_TABLE_NAME);
@@ -206,12 +263,19 @@ public class DBHelper extends SQLiteOpenHelper {
         return true;
     }
 
-    public Integer deleteContact (String id)
+    public boolean deleteCourse (String id)
     {
         SQLiteDatabase db = this.getWritableDatabase();
-        return db.delete("course_info",
+        db.delete("course_info",
                 "id = ? ",
                 new String[] { id });
+        db.delete("course_location_info",
+                "id = ? ",
+                new String[] { id });
+        db.delete("course_attendance",
+                "id = ? ",
+                new String[] { id });
+        return true;
     }
 
     public ArrayList<String> getAllCoursesID()

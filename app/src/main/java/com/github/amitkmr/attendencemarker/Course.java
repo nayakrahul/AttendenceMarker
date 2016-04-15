@@ -70,6 +70,8 @@ public class Course extends AppCompatActivity {
         android.support.v7.app.ActionBar actionBar = getSupportActionBar();
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
+
+        setTitle("Course List");
     }
 
     @Override

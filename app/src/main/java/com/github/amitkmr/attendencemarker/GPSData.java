@@ -28,9 +28,6 @@ public class GPSData extends DialogFragment implements LocationListener{
 
     onSyncCoordinate someEventListener;
 
-
-
-
     protected LocationManager locationManager;
     protected LocationListener locationListener;
     TextView txtLat;
@@ -82,8 +79,6 @@ public class GPSData extends DialogFragment implements LocationListener{
         txtLat.setText("Latitude:" + location.getLatitude() + "\nLongitude:" + location.getLongitude());
         latitude  = location.getLatitude()+"";
         longitude = location.getLongitude()+"";
-
-
     }
 
     @Override
