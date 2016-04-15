@@ -1,14 +1,21 @@
 package com.github.amitkmr.attendencemarker;
 
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -18,8 +25,10 @@ import java.util.ArrayList;
 public class AttendanceDetails extends AppCompatActivity {
     private DBHelper mydb ;
     private TextView desc;
-    private String id;
     private String data;
+    private String id;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,59 +53,62 @@ public class AttendanceDetails extends AppCompatActivity {
 
         int N = dates.size();
 
-        TextView temp1 = new TextView(this);
-        TextView temp2 = new TextView(this);
-        temp1 = (TextView) findViewById(R.id.classes);
-        temp2 = (TextView) findViewById(R.id.attendance);
+        final LinearLayout lm = (LinearLayout) findViewById(R.id.attendance_detail);
 
-        RelativeLayout relativeLayout = (RelativeLayout) findViewById(R.id.attendance_detail);
-        for(int i = 0; i < N; i++){
-            TextView textView = new TextView(this);
+        // create the layout params that will be used to define how your
+        // button will be displayed
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                RadioGroup.LayoutParams.WRAP_CONTENT, RadioGroup.LayoutParams.WRAP_CONTENT);
 
-            final float scale = this.getResources().getDisplayMetrics().density;
-            int pixels = (int) (250 * scale + 0.5f);
-            RelativeLayout.LayoutParams lp1 = new RelativeLayout.LayoutParams(
-                    pixels, RelativeLayout.LayoutParams.WRAP_CONTENT);
-            lp1.addRule(RelativeLayout.BELOW, temp1.getId());
+        //Create four
+        for(int i = 0; i < N; i++)
+        {
+            // Create LinearLayout
+            LinearLayout ll = new LinearLayout(this);
+            ll.setOrientation(LinearLayout.HORIZONTAL);
 
-            textView.setLayoutParams(lp1);
-            textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
-            textView.setBackgroundResource(R.drawable.course_border);
-            String s = dates.get(i);
-            textView.setText(s);
+            // Create TextView
+            TextView date = new TextView(this);
+            float scale = this.getResources().getDisplayMetrics().density;
+            int pixels = (int) (230 * scale + 0.5f);
+            date.setLayoutParams(
+                    new LinearLayout.LayoutParams(
+                            pixels, RadioGroup.LayoutParams.WRAP_CONTENT));
+            date.setText(dates.get(i));
+            date.setBackgroundResource(R.drawable.course_border);
+            date.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
             int pp = (int) (10 * scale + 0.5f);
-            textView.setPadding(pp, pp, pp, pp);
-            textView.setGravity(Gravity.CENTER);
-            textView.setId(View.generateViewId());
+            date.setPadding(pp, pp, pp, pp);
+            date.setGravity(Gravity.CENTER);
+            ll.addView(date);
 
-            temp1 = textView;
-            relativeLayout.addView(textView, relativeLayout.getChildCount() - 1);
+            // Create TextView
+            TextView status = new TextView(this);
+            pixels = (int) (130 * scale + 0.5f);
+            status.setLayoutParams(
+                    new LinearLayout.LayoutParams(
+                            pixels, RadioGroup.LayoutParams.WRAP_CONTENT));
+            if(attendance.get(i) == 1){
+                status.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_done_24dp, 0, 0, 0);
+            }
+            else{
+                status.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_close_24dp, 0, 0, 0);
+            }
+            status.setBackgroundResource(R.drawable.course_border);
+            status.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
+            status.setPadding(100, pp, pp, pp);
+            status.setGravity(Gravity.CENTER | Gravity.RIGHT);
+            ll.addView(status);
 
-            TextView PresentAbsent = new TextView(this);
-            if(attendance.get(i)==1)
-                PresentAbsent.setCompoundDrawablesWithIntrinsicBounds(
-                        R.drawable.ic_done_24dp, 0, 0, 0);
-            else
-                PresentAbsent.setCompoundDrawablesWithIntrinsicBounds(
-                        R.drawable.ic_close_24dp, 0, 0, 0);
-
-            RelativeLayout.LayoutParams lp2 = new RelativeLayout.LayoutParams(
-                    pixels, RelativeLayout.LayoutParams.WRAP_CONTENT);
-            lp2.addRule(RelativeLayout.BELOW, temp2.getId());
-            PresentAbsent.setLayoutParams(lp2);
-            PresentAbsent.setBackgroundResource(R.drawable.course_border);
-            textView.setPadding(pp, pp, pp, pp);
-            textView.setGravity(Gravity.CENTER);
-            textView.setId(View.generateViewId());
-            temp2 = PresentAbsent;
-            relativeLayout.addView(PresentAbsent, relativeLayout.getChildCount() - 1);
-
+            //Add button to LinearLayout defined in XML
+            lm.addView(ll);
         }
 
         // Back button to reach to home activity
 
         // return to to the home screen
 
+        setTitle("   "+id);
         android.support.v7.app.ActionBar actionBar = getSupportActionBar();
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);

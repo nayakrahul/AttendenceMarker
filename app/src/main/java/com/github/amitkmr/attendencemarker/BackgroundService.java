@@ -26,6 +26,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Collections;
+import android.widget.Toast;
+
+import com.google.android.gms.vision.barcode.Barcode;
+
+import java.util.Timer;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 import java.util.Date;
 
@@ -37,14 +45,14 @@ import java.util.Timer;
  * Created by RAHUL on 14-04-2016.
  */
 
-
-
 public class BackgroundService extends Service implements LocationListener {
     int mStartMode;       // indicates how to behave if the service is killed
     IBinder mBinder;      // interface for clients that bind
     boolean mAllowRebind; // indicates whether onRebind should be used
     private DBHelper mydb ;
 
+
+    private static BackgroundService inst;
 
     ArrayList<String> coursesAttended = new ArrayList<String>();
     ArrayList<String> coursesNotAttended = new ArrayList<String>();
@@ -70,6 +78,10 @@ public class BackgroundService extends Service implements LocationListener {
     public int onStartCommand(Intent intent, int flags, int startId) {
         // The service is starting, due to a call to startService()
         runForeground();
+
+        //getStarted();
+
+
         mydb = new DBHelper(this);
         //getStarted();
         // GPS DATA \//////////////////////////////////////
@@ -168,6 +180,7 @@ public class BackgroundService extends Service implements LocationListener {
             }
 
 
+
         }
 
 
@@ -252,6 +265,8 @@ public class BackgroundService extends Service implements LocationListener {
 
         Collections.sort(daySchedule);
         return daySchedule;
+
+
     }
 
     public void resetSchedule(){
@@ -260,7 +275,12 @@ public class BackgroundService extends Service implements LocationListener {
     }
 
 
-
+    public void getStarted(){
+        Log.d("MYLOG", "Alarm On");
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.HOUR_OF_DAY, 19);
+        calendar.set(Calendar.MINUTE, 0);
+    }
 
 
 

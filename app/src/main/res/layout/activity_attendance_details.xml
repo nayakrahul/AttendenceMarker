@@ -1,19 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:customviews="http://schemas.android.com/apk/res-auto"
     android:id="@+id/scrollView2"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    tools:context=".DisplayContact" >
+    tools:context=".DisplayContact">
 
-    <RelativeLayout
+    <LinearLayout
         android:orientation="vertical" android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/attendance_detail"
         android:weightSum="1">
 
         <TextView
-            android:layout_width="fill_parent"
+            android:layout_width="363dp"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:textAppearance="?android:attr/textAppearanceLarge"
@@ -26,39 +28,111 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
 
+        <com.github.amitkmr.attendencemarker.DonutChart
+            android:id="@+id/donutChart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            customviews:radius="90dp"
+            android:layout_gravity="center"
+            android:layout_below="@+id/courseName"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_margin="10dp" />
+<LinearLayout
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:weightSum="1">
+
+        <ImageView
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:id="@+id/imageView"
+            android:src="@drawable/ic_green_box"
+            android:layout_marginLeft="70dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginRight="5dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Attended"
+            android:id="@+id/textView4"
+            android:textIsSelectable="false"
+            android:textSize="15dp"
+            android:gravity="center"
+            android:layout_marginBottom="10dp" />
+
+    <ImageView
+        android:layout_width="22dp"
+        android:layout_height="22dp"
+        android:id="@+id/imageView2"
+        android:src="@drawable/ic_red_box"
+        android:layout_marginLeft="20dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginRight="5dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Not Attended"
+        android:id="@+id/textView5"
+        android:textIsSelectable="false"
+        android:textSize="15dp"
+        android:gravity="center"
+        android:layout_marginBottom="10dp" />
+</LinearLayout>
+        <LinearLayout
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
 
         <TextView
-            android:layout_width="250dp"
+            android:layout_width="230dp"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:id="@+id/classes"
             android:padding="5dp"
             android:background="@drawable/course_border"
-            android:textSize="18dp"
+            android:textSize="22dp"
             android:text="Classes"
 
             android:visibility="visible"
-            android:layout_below="@+id/courseName"
+            android:layout_below="@+id/donutChart"
             android:layout_marginTop="0dp"/>
 
         <TextView
-            android:layout_width="180dp"
+            android:layout_width="130dp"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:id="@+id/attendance"
             android:padding="5dp"
             android:background="@drawable/course_border"
-            android:textSize="18dp"
+            android:textSize="22dp"
             android:text="Status"
 
             android:visibility="visible"
 
-            android:layout_below="@+id/courseName"
+            android:layout_below="@+id/donutChart"
             android:layout_toRightOf="@+id/classes"
-            android:layout_marginTop="0dp" />
+            android:layout_marginTop="0dp"
+            android:layout_gravity="right" />
+</LinearLayout>
 
-    </RelativeLayout>
+    </LinearLayout>
 </ScrollView>
+
+
+
+
+
+
+
+
+
+

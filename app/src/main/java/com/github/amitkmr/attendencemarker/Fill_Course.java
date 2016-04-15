@@ -31,6 +31,9 @@ public class Fill_Course extends AppCompatActivity implements TimePickerFragment
         name = (TextView) findViewById(R.id.course_name);
         mydb = new DBHelper(this);
 
+        // Set title of the courses
+        setTitle("  Course Details ");
+        // return back to previous activity
         android.support.v7.app.ActionBar actionBar = getSupportActionBar();
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
