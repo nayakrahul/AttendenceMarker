@@ -17,13 +17,13 @@
         android:paddingTop="@dimen/abc_action_bar_overflow_padding_start_material"
         android:text="Track Your Attendence"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:id="@+id/yourAttendence"
+        android:id="@+id/yourAttendance"
         android:textSize="@dimen/abc_floating_window_z" />
 
     <TextView
         android:id="@+id/siteUrl"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="amitkmr@github.com" />
+        android:text="Let the device mark your attendance" />
 
 </LinearLayout>

@@ -173,6 +173,9 @@ public class BackgroundService extends Service implements LocationListener {
                             }
                         }
                     }
+                    else {
+                        Notify(course_id, current_date, "Coordinates not set !! Please sync them");
+                    }
                 }
                 else if(current_time.compareTo(end_time) > 0){
 
