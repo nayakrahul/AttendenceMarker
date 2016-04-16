@@ -111,28 +111,29 @@ public class Attendance extends AppCompatActivity implements GPSData.onSyncCoord
         ll.setOrientation(LinearLayout.HORIZONTAL);
 
         final Button btn = new Button(this);
+        float scale = this.getResources().getDisplayMetrics().density;
+        int pixels3 = (int) (60 * scale + 0.5f);
+        int pixels4 = (int) (360 * scale + 0.5f);
         btn.setLayoutParams(
                 new LinearLayout.LayoutParams(
-                        RadioGroup.LayoutParams.MATCH_PARENT, RadioGroup.LayoutParams.MATCH_PARENT));
+                        pixels4,pixels3));
         btn.setText("DELETE COURSE");
-        // set the layoutParams on the button
-        btn.setLayoutParams(params);
-        float scale = this.getResources().getDisplayMetrics().density;
-        int pixels1 = (int) (20 * scale + 0.5f);
-        int pixels2 = (int) (30 * scale + 0.5f);
-        btn.setPadding(pixels1, pixels2, pixels1, pixels2);
+        btn.setGravity(Gravity.CENTER);
 
+//        int pixels1 = (int) (20 * scale + 0.5f);
+//        int pixels2 = (int) (30 * scale + 0.5f);
+//        btn.setPadding(pixels1, pixels2, pixels1, pixels2);
         // Set click listener for button
         btn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // put code on click operation
                 FragmentManager fm = getFragmentManager();
-                DeleteWarning dialogFragment = new DeleteWarning ();
+                DeleteWarning dialogFragment = new DeleteWarning();
                 dialogFragment.show(fm, "Sample Fragment");
             }
         });
         LinearLayout.LayoutParams params1 = (LinearLayout.LayoutParams)btn.getLayoutParams();
-        params1.setMargins(320, 50, 320, 100);
+        params1.setMargins(0, 50, 0, 100);
         btn.setLayoutParams(params1);
 
         //Add button to LinearLayout
