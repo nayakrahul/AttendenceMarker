@@ -57,14 +57,14 @@ public class AttendanceDetails extends AppCompatActivity{
         final LinearLayout lm = (LinearLayout) findViewById(R.id.attendance_detail);
 
         // create the layout params that will be used to define how your
-        // button will be displayed
+        // create attendance list
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                 RadioGroup.LayoutParams.WRAP_CONTENT, RadioGroup.LayoutParams.WRAP_CONTENT);
 
         //Create four
         int totalScheduledClasses = N;
         int attendedClasses = 0;
-        for(int i = 0; i < N; i++)
+        for(int i = N-1; i >= 0; i--)
         {
             // Create LinearLayout
             LinearLayout ll = new LinearLayout(this);
@@ -105,20 +105,20 @@ public class AttendanceDetails extends AppCompatActivity{
             status.setGravity(Gravity.CENTER | Gravity.RIGHT);
             ll.addView(status);
 
-            //Add button to LinearLayout defined in XML
             lm.addView(ll);
         }
 
-        // Back button to reach to home activity
 
-        // return to to the home screen
-
+        //make donut chart of attendance
         DonutChart donutChart = (DonutChart) findViewById(R.id.donutChart);
         donutChart.pieChartVariableA = totalScheduledClasses;
         donutChart.pieChartVariableB = attendedClasses;
 
 
         setTitle("   " + id);
+        // Back button to reach to home activity
+
+        // return to to the home screen
         android.support.v7.app.ActionBar actionBar = getSupportActionBar();
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);

@@ -40,6 +40,7 @@ public class Attendance extends AppCompatActivity implements GPSData.onSyncCoord
         desc = (TextView) findViewById(R.id.courseName);
         desc.setText(data);
 
+        //set attendance stats
         stats = (TextView) findViewById(R.id.attendance_score);
         stats.setText(getStats(id));
 
@@ -63,7 +64,7 @@ public class Attendance extends AppCompatActivity implements GPSData.onSyncCoord
         final LinearLayout lm = (LinearLayout) findViewById(R.id.course_detail);
 
         // create the layout params that will be used to define how your
-        // button will be displayed
+        //create the schedule
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                 RadioGroup.LayoutParams.WRAP_CONTENT, RadioGroup.LayoutParams.WRAP_CONTENT);
         for(int i = 0; i < N; i++){
@@ -101,10 +102,11 @@ public class Attendance extends AppCompatActivity implements GPSData.onSyncCoord
             schedule_time.setGravity(Gravity.CENTER);
             ll.addView(schedule_time);
 
-            //Add button to LinearLayout defined in XML
             lm.addView(ll);
 
         }
+
+        //add delete button
         LinearLayout ll = new LinearLayout(this);
         ll.setOrientation(LinearLayout.HORIZONTAL);
 
@@ -138,7 +140,7 @@ public class Attendance extends AppCompatActivity implements GPSData.onSyncCoord
         //Add button to LinearLayout defined in XML
         lm.addView(ll);
 
-        // get the latitude and longitude from the table
+        // check the latitude and longitude from the table
         CoordinatesSetOrNot(id);
 
         //set titile in the app bar

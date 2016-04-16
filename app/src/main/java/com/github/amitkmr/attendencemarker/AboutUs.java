@@ -37,7 +37,6 @@ public class AboutUs extends AppCompatActivity {
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
 
-        setTitle("About us");
     }
 
     @Override
