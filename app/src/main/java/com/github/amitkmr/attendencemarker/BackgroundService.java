@@ -168,19 +168,19 @@ public class BackgroundService extends Service implements LocationListener {
                         if (latitude_distance <= 0.00025 && longitude_distance <= 0.00025) {
 
                             if(mydb.makeAttendance(course_id, current_date, 1)) {
-                                Notify(course_id, current_date, "Attended");
+                                Notify(course_id, current_date, "Attended", R.drawable.ic_check_circle_24dp);
                                 coursesAttended.add(course_id);
                             }
                         }
                     }
                     else {
-                        Notify(course_id, current_date, "Coordinates not set !! Please sync them");
+                        Notify(course_id, current_date, "Coordinates not set !! Please sync them", R.drawable.ic_error_24dp);
                     }
                 }
                 else if(current_time.compareTo(end_time) > 0){
 
                     if(mydb.makeAttendance(course_id, current_date, 0)) {
-                        Notify(course_id, current_date, "Not Attended");
+                        Notify(course_id, current_date, "Not Attended", R.drawable.ic_cancel_24dp);
                         coursesNotAttended.add(course_id);
                     }
                 }
@@ -193,14 +193,14 @@ public class BackgroundService extends Service implements LocationListener {
 
 
 
-    private void Notify(String notificationTitle, String notificationMessage, String subText){
+    private void Notify(String notificationTitle, String notificationMessage, String subText, int icon){
         NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
         Intent notificationIntent = new Intent(this, AttendanceDetails.class);
         notificationIntent.putExtra("id", notificationTitle);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, notificationIntent, 0);
         Notification myNotification = builder.setContentIntent(pendingIntent)
-                .setSmallIcon(R.drawable.ic_check_circle_24dp)
+                .setSmallIcon(icon)
                 .setTicker(getText(R.string.ticker_text)).setWhen(System.currentTimeMillis())
                 .setAutoCancel(false)
                 .setContentTitle(notificationTitle)
