@@ -37,6 +37,7 @@ public class AboutUs extends AppCompatActivity {
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
 
+
     }
 
     @Override
