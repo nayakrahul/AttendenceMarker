@@ -38,7 +38,7 @@
         android:layout_marginTop="0dp"
         android:padding="15dp"
         android:textSize="@dimen/add_course_text_size"
-        android:text="Attendence: "
+        android:text="Attendance: "
         android:layout_marginLeft="35dp"
         android:layout_marginStart="35dp"
         android:layout_alignTop="@+id/attendance_score"
@@ -66,7 +66,7 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:text="Attendence Details"
+        android:text="Attendance Details"
         android:id="@+id/attendance_details_button"
         android:gravity="center"
         android:textAlignment="center"

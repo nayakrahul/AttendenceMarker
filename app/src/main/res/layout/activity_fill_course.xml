@@ -627,7 +627,8 @@
             android:layout_toRightOf="@+id/sun_end_text"
             android:layout_toEndOf="@+id/sun_end_text"
             android:drawableRight="@drawable/ic_access_time_24dp"
-            android:enabled="false"/>
+            android:enabled="false"
+            android:onClick="onClick_end_time" />
 
         <TextView
             android:layout_width="160dp"

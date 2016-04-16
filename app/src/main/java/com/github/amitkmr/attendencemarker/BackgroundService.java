@@ -165,18 +165,21 @@ public class BackgroundService extends Service implements LocationListener {
                         double latitude_distance = Math.abs(Double.parseDouble(latitude) - Double.parseDouble(course_latitude));
                         double longitude_distance = Math.abs(Double.parseDouble(longitude) - Double.parseDouble(course_longitude));
 
-                        if (latitude_distance <= 0.0005 && longitude_distance <= 0.0005) {
-                            coursesAttended.add(course_id);
+                        if (latitude_distance <= 0.00025 && longitude_distance <= 0.00025) {
+
                             if(mydb.makeAttendance(course_id, current_date, 1)) {
                                 Notify(course_id, current_date, "Attended");
+                                coursesAttended.add(course_id);
                             }
                         }
                     }
                 }
                 else if(current_time.compareTo(end_time) > 0){
-                    coursesNotAttended.add(course_id);
-                    if(mydb.makeAttendance(course_id, current_date, 0))
+
+                    if(mydb.makeAttendance(course_id, current_date, 0)) {
                         Notify(course_id, current_date, "Not Attended");
+                        coursesNotAttended.add(course_id);
+                    }
                 }
             }
 
@@ -270,6 +273,7 @@ public class BackgroundService extends Service implements LocationListener {
 
     public void resetSchedule(){
         coursesAttended.clear();
+        coursesNotAttended.clear();
 
     }
 
