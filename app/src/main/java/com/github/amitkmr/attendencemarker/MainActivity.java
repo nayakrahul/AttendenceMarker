@@ -183,7 +183,8 @@ public class MainActivity extends AppCompatActivity
 
 
         if (id == R.id.nav_dashboard) {
-            // Handle the camera action
+            Intent nextScreen = new Intent(getApplicationContext(), MainActivity.class);
+            startActivity(nextScreen);
         } else if (id == R.id.nav_courses) {
             Intent nextScreen = new Intent(getApplicationContext(), Course.class);
             startActivity(nextScreen);
