@@ -115,6 +115,7 @@ public class AttendanceDetails extends AppCompatActivity{
         donutChart.pieChartVariableB = attendedClasses;
 
 
+        setTitle("   " + id);
         // Back button to reach to home activity
 
         // return to to the home screen
