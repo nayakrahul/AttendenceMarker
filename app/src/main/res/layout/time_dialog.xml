@@ -17,7 +17,8 @@
         android:layout_height="wrap_content"
         android:text="done"
         android:id="@+id/button"
-        android:background="#fe61a7"
+        android:background="#FFEC2B31"
         android:layout_marginBottom="0dp"
-        android:layout_marginTop="5dp" />
+        android:layout_marginTop="5dp"
+        android:textColor="#ffffff" />
 </LinearLayout>

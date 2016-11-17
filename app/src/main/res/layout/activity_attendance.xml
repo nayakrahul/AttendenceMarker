@@ -70,7 +70,7 @@
         android:id="@+id/attendance_details_button"
         android:gravity="center"
         android:textAlignment="center"
-        android:background="#9BDDFF"
+        android:background="#f34146"
         android:nestedScrollingEnabled="false"
 
 
@@ -82,7 +82,8 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="25dp"
         android:layout_marginLeft="25dp"
-        android:layout_marginRight="25dp" />
+        android:layout_marginRight="25dp"
+        android:textColor="#ffffff" />
 
     <Button
         android:layout_width="match_parent"
@@ -91,7 +92,7 @@
         android:id="@+id/coordinate_check"
         android:gravity="center"
         android:textAlignment="center"
-        android:background="#9BDDFF"
+        android:background="#f34146"
         android:nestedScrollingEnabled="false"
         android:onClick="onClickSyncCoordinate"
         android:fontFamily="Roboto-Thin"
@@ -100,7 +101,8 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="25dp"
-        android:layout_marginRight="25dp" />
+        android:layout_marginRight="25dp"
+        android:textColor="#ffffff" />
 
     <TextView
         android:layout_width="fill_parent"
